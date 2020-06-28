@@ -1,0 +1,82 @@
+---
+version: '2.4'
+
+services:
+  db:
+    image: postgres:${POSTGRES_VERSION:-12-alpine}
+    ports:
+      - "15433:5432"
+    environment:
+      - POSTGRES_HOST_AUTH_METHOD=trust
+    tmpfs:
+      - /tmp
+    volumes:
+      - db-data:/var/lib/postgresql/data
+      - ./postgres_config.sql:/docker-entrypoint-initdb.d/postgres_config.sql
+    restart: unless-stopped
+    healthcheck:
+      test: pg_isready -U postgres -h 127.0.0.1
+      interval: 1s
+
+  backend:
+    build:
+      context: backend
+    volumes:
+      - ./backend:/usr/src/app:cached
+      - rails_cache:/usr/src/app/tmp/cache
+      - bundle:/bundle
+    environment:
+      - RAILS_ENV=${RAILS_ENV:-development}
+      - BOOTSNAP_CACHE_DIR=/bundle/bootsnap
+      - MALLOC_ARENA_MAX=2
+      - WEB_CONCURRENCY=${WEB_CONCURRENCY:-1}
+      - REDIS_URL=redis://redis:6379/
+      - EDITOR=vi
+    command: >
+      sh -c "rm -f /usr/src/app/tmp/pids/server.pid ;
+      bundle exec rails s -p 8080 -b 0.0.0.0"
+    ports:
+      - "8888:8080"
+    depends_on:
+      db:
+        condition: service_healthy
+      redis:
+        condition: service_healthy
+    stdin_open: true
+    tty: true
+    tmpfs:
+      - /tmp
+
+  redis:
+    image: redis:6-alpine
+    volumes:
+      - redis:/data
+    ports:
+      - 6379
+    healthcheck:
+      test: redis-cli ping
+      interval: 1s
+      timeout: 3s
+      retries: 30
+
+  frontend:
+    build:
+      context: frontend
+      dockerfile: dev.Dockerfile
+    volumes:
+      - ./frontend:/usr/src/app:cached
+      - node_modules:/usr/src/app/node_modules
+      - packs:/usr/src/app/public/packs
+    command: yarn run serve
+    ports:
+      - "3333:8080"
+    tmpfs:
+      - /tmp
+
+volumes:
+  db-data:
+  redis:
+  bundle:
+  node_modules:
+  rails_cache:
+  packs:

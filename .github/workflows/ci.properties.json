@@ -1,0 +1,6 @@
+{
+  "name": "CI",
+  "description": "Execute tests for Rails project",
+  "iconName": "ruby",
+  "categories": ["Ruby"]
+}
