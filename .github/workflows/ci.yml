@@ -215,13 +215,13 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: postgres
-          POSTGRES_PASSWORD: "postgres"
+          POSTGRES_PASSWORD: postgres
           PGPORT: ${{ job.services.postgres.ports[5432] }}
         run: |
           gem install bundler
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
-          bundle exec rails db:setup
+          RAILS_ENV=test bundle exec rails db:setup
           bundle exec rubocop --parallel
 #######################################
   consistency_fail:
@@ -264,13 +264,13 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: postgres
-          POSTGRES_PASSWORD: "postgres"
+          POSTGRES_PASSWORD: postgres
           PGPORT: ${{ job.services.postgres.ports[5432] }}
         run: |
           gem install bundler
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
-          bundle exec rails db:setup
+          RAILS_ENV=test bundle exec rails db:setup
           bundle exec consistency_fail
 #######################################
   database_consistency:
@@ -313,13 +313,13 @@ jobs:
           RAILS_ENV: test
           PGHOST: localhost
           PGUSER: postgres
-          POSTGRES_PASSWORD: "postgres"
+          POSTGRES_PASSWORD: postgres
           PGPORT: ${{ job.services.postgres.ports[5432] }}
         run: |
           gem install bundler
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
-          bundle exec rails db:setup
+          RAILS_ENV=test bundle exec rails db:setup
           bundle exec database_consistency
 #######################################
   rspec:
@@ -329,7 +329,7 @@ jobs:
         image: postgres:11.6-alpine
         env:
           POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: "postgres"
+          POSTGRES_PASSWORD: postgres
         ports:
           - 5432/tcp
         options: >-
@@ -362,12 +362,12 @@ jobs:
         env:
           PGHOST: localhost
           PGUSER: postgres
-          POSTGRES_PASSWORD: "postgres"
+          POSTGRES_PASSWORD: postgres
           PGPORT: ${{ job.services.postgres.ports[5432] }}
           RAILS_ENV: test
         run: |
           gem install bundler
           bundle config path vendor/bundle
           bundle install --without development production --jobs 4 --retry 3
-          bundle exec rails db:setup
+          RAILS_ENV=test bundle exec rails db:setup
           bundle exec rspec
