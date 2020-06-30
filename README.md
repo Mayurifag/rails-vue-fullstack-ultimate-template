@@ -2,7 +2,11 @@
 ![Build Status][build-badger]
 [![License: LGPL v3][license-badger]][license-link]
 
-# Getting Started
+# Description
+
+The best template for Rails/Vue.js stack you may find somewhere, but I am just
+too lazy to write about all the features right now (uuuuh)
+
 
 ## Prerequisites
 To start development server you need latest stable versions of `git`, `docker`,
