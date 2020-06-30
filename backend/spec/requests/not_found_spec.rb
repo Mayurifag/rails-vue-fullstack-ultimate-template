@@ -1,7 +1,11 @@
 require "rails_helper"
 
 RSpec.describe "Not found", type: :request do
-  before { expect_any_instance_of(ApplicationController).to receive(:authenticate_user).and_return(true) }
+  before do
+    expect_any_instance_of(ApplicationController)
+      .to receive(:authenticate_user)
+      .and_return(true)
+  end
 
   describe "GET /asdasdasasasddasasdasdasd" do
     subject! { get "/asdasdasasasddasasdasdasd" }
