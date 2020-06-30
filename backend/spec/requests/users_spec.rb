@@ -79,7 +79,7 @@ RSpec.describe "Users API", type: :request do
 
       it "returns record invalid" do
         expect(response).to have_http_status(422)
-        expect(json["errors"]).to eq "Validation failed: Email is invalid"
+        expect(json["errors"]).to include "Validation failed: Email is invalid"
       end
     end
 
