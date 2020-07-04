@@ -6,7 +6,6 @@ class User < ApplicationRecord
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP},
                     presence: true,
                     uniqueness: {case_sensitive: false}
-  validates :password, presence: true, length: {minimum: 4, maximum: 40}
   validates :password_digest, presence: true
 
   def generate_password_token!

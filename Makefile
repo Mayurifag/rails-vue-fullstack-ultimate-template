@@ -1,3 +1,5 @@
+.PHONY: all cypress parallel prodbuild yml report open-cov
+
 all: cypress
 
 cypress:
@@ -17,3 +19,6 @@ yml:
 report:
 		dip report
 		xdg-open ./frontend/dist/report.html
+
+open-cov:
+		xdg-open ./backend/coverage/index.html

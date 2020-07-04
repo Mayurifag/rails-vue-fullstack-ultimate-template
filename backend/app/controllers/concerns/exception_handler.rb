@@ -24,6 +24,8 @@ module ExceptionHandler
     rescue_from ActiveRecord::RecordInvalid do |exception|
       record_invalid(exception.message)
     end
+
+    rescue_from ResetPasswordError, with: :unauthorized
   end
 
   def unauthorized(message = "Unauthorized")

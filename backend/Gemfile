@@ -21,12 +21,9 @@ gem "strong_migrations"
 gem "nilify_blanks"
 
 group :development, :test do
-  gem "awesome_rails_console"
   gem "byebug", platforms: %i[mri mingw x64_mingw]
   gem "factory_bot_rails"
   gem "factory_trace"
-  gem "hirb"
-  gem "hirb-unicode-steakknife", require: "hirb-unicode"
   gem "isolator"
   gem "parallel_tests"
   gem "pry-byebug"
@@ -34,6 +31,8 @@ group :development, :test do
   gem "rspec-rails"
   gem "ruby-prof", ">= 0.16.0", require: false
   gem "stackprof", ">= 0.2.9", require: false
+  gem "pry-coolline", github: 'owst/pry-coolline', branch: 'support_new_pry_config_api'
+  gem "spirit_hands"
 end
 
 group :development do
@@ -45,6 +44,8 @@ group :development do
   gem "ordinare", require: false
   gem "rubocop-rspec"
   gem "standard"
+  gem "letter_opener"
+  gem 'letter_opener_web'
 end
 
 group :test do
