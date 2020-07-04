@@ -6,13 +6,13 @@ class User < ApplicationRecord
   validates :email, format: {with: URI::MailTo::EMAIL_REGEXP},
                     presence: true,
                     uniqueness: {case_sensitive: false}
-  validates :password, presence: true, length: {minimum: 4, maximum: 40}
   validates :password_digest, presence: true
 
+  # TODO: move these to handlers
   def generate_password_token!
-    loop do
-      self.reset_password_token = SecureRandom.urlsafe_base64
-      break unless User.exists?(reset_password_token: reset_password_token)
+    self.reset_password_token = loop do
+      random_token = SecureRandom.urlsafe_base64
+      break random_token unless self.class.exists?(reset_password_token: random_token)
     end
     self.reset_password_token_expires_at = 1.day.from_now
     save!
