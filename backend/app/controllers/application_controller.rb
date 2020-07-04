@@ -4,6 +4,9 @@
 class ApplicationController < ActionController::API
   include Response
   include ExceptionHandler
-  include KnockKnock::Authenticable
-  before_action :authenticate_user
+  include CurrentUser
+  include JWTSessions::RailsAuthorization
+
+  # Any request, except skipped further ones has to be authorized via jwt
+  before_action :authorize_access_request!
 end

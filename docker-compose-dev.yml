@@ -70,8 +70,6 @@ services:
     command: yarn run serve
     ports:
       - "3333:8080"
-    tmpfs:
-      - /tmp
 
 volumes:
   db-data:

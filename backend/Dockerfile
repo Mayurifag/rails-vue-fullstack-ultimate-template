@@ -13,10 +13,12 @@ ENV LANG=C.UTF-8 \
 # git - to update bundler audit
 # postgresql-dev - pg
 # tzdata - tzinfo-data to prevent TZInfo::DataSourceNotFound: tzinfo-data is not present on rails db create/migrate/etc.
+# postgresql-client - for pg_dump thats used to make structure.sql [supports pg enums]
 RUN apk add --update --no-cache \
         build-base \
         git \
         postgresql-dev \
+        postgresql-client \
         tzdata \
         xz-dev \
     && ln -sf /usr/share/zoneinfo/Europe/Moscow /etc/localtime \

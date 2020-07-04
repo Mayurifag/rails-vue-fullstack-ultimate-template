@@ -5,11 +5,21 @@ module ExceptionHandler
   extend ActiveSupport::Concern
 
   included do
-    rescue_from ActiveRecord::RecordInvalid, with: :record_invalid
+    rescue_from JWTSessions::Errors::Unauthorized do |exception|
+      unauthorized(exception.message)
+    end
 
-    # rescue_from ActiveRecord::RecordNotFound do |exception|
-    #   not_found(exception.message)
-    # end
+    rescue_from JWTSessions::Errors::ClaimsVerification do |exception|
+      forbidden(exception.message)
+    end
+
+    rescue_from ActiveRecord::RecordNotFound do |exception|
+      not_found(exception.message)
+    end
+
+    rescue_from ActionController::ParameterMissing do |exception|
+      bad_request(exception.message)
+    end
 
     rescue_from ActiveRecord::RecordInvalid do |exception|
       record_invalid(exception.message)
@@ -26,5 +36,13 @@ module ExceptionHandler
 
   def not_found(message = "Not found")
     json_response({errors: message}, :not_found)
+  end
+
+  def bad_request(message = "Bad request")
+    json_response({errors: message}, :bad_request)
+  end
+
+  def forbidden(message = "Forbidden")
+    json_response({errors: message}, :forbidden)
   end
 end

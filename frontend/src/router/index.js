@@ -1,29 +1,38 @@
 import Vue from 'vue'
-import VueRouter from 'vue-router'
-import Home from '../views/Home.vue'
+import Router from 'vue-router'
+import Signin from '@/components/Signin'
+import Signup from '@/components/Signup'
+import ForgotPassword from '@/components/ForgotPassword'
+import AboutUser from '@/components/AboutUser'
 
-Vue.use(VueRouter)
+Vue.use(Router)
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home
-  },
-  {
-    path: '/about',
-    name: 'About',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/About.vue')
-  }
-]
-
-const router = new VueRouter({
-  mode: 'history',
-  base: process.env.BASE_URL,
-  routes
+export default new Router({
+  routes: [
+    {
+      path: '/',
+      name: 'Signin',
+      component: Signin
+    },
+    {
+      path: '/signup',
+      name: 'Signup',
+      component: Signup
+    },
+    {
+      path: '/forgot_password',
+      name: 'ForgotPassword',
+      component: ForgotPassword
+    },
+    // {
+    //   path: '/password_resets/:token',
+    //   name: 'ResetPassword',
+    //   component: ResetPassword
+    // },
+    {
+      path: '/about_user',
+      name: 'AboutUser',
+      component: AboutUser
+    },
+  ]
 })
-
-export default router

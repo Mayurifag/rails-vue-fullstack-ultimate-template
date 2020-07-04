@@ -8,9 +8,10 @@
 # Read more: https://github.com/cyu/rack-cors
 Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
-    origins "*"
+    origins 'http://localhost:3333'
     resource "*",
       headers: :any,
+      credentials: true,
       methods: %i[get post put patch delete options head]
   end
 end

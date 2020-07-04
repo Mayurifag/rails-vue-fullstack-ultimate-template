@@ -32,7 +32,8 @@ end
 
 RSpec.configure do |config|
   config.include FactoryBot::Syntax::Methods
-  config.include RequestSpecHelper, type: :request
+  config.include JsonHelper
+  config.include AuthHelper
 
   config.infer_spec_type_from_file_location!
   config.use_transactional_fixtures = true

@@ -3,7 +3,7 @@ require "rails_helper"
 RSpec.describe "Not found", type: :request do
   before do
     expect_any_instance_of(ApplicationController)
-      .to receive(:authenticate_user)
+      .to receive(:authorize_access_request!)
       .and_return(true)
   end
 

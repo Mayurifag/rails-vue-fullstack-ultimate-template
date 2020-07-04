@@ -7,9 +7,10 @@ ruby File.read(File.expand_path(".ruby-version", __dir__)).chomp
 
 gem "rails"
 
+gem "bcrypt"
 gem "bootsnap", require: false
-gem "knock_knock"
 gem "fast_blank", platform: :mri
+gem "jwt_sessions"
 gem "oj"
 gem "pagy"
 gem "pg"
@@ -17,6 +18,7 @@ gem "puma"
 gem "rack-cors"
 gem "redis"
 gem "strong_migrations"
+gem "nilify_blanks"
 
 group :development, :test do
   gem "awesome_rails_console"
