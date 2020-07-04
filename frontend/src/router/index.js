@@ -34,7 +34,7 @@ export default new Router({
       path: '/about_user',
       name: 'AboutUser',
       component: AboutUser
-    },
+    }
   ],
   mode: 'history'
 })

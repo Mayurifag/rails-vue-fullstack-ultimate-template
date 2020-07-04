@@ -28,7 +28,7 @@ export default {
   methods: {
     setError (error, text) {
       this.error = (error.response && error.response.data && error.response.data.error) || text
-    },
+    }
   },
   components: { AppHeader }
 }
