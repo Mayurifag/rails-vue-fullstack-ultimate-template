@@ -19,27 +19,27 @@ RSpec.describe Users::PasswordResetsController, type: :controller do
 
   describe "GET #show" do
     it do
-      user.generate_password_token!
+      UserHandler.new(user).generate_password_token!
       get :show, params: {token: user.reset_password_token}
       expect(response).to be_successful
     end
 
     it "returns unauthorized for expired tokens" do
-      user.generate_password_token!
+      UserHandler.new(user).generate_password_token!
       user.update({reset_password_token_expires_at: 2.days.ago})
       get :show, params: {token: user.reset_password_token}
       expect(response).to have_http_status(401)
     end
 
     it "returns unauthorized for invalid expirations" do
-      user.generate_password_token!
+      UserHandler.new(user).generate_password_token!
       user.update({reset_password_token_expires_at: nil})
       get :show, params: {token: user.reset_password_token}
       expect(response).to have_http_status(401)
     end
 
     it "returns unauthorized for invalid params" do
-      user.generate_password_token!
+      UserHandler.new(user).generate_password_token!
       get :show, params: {token: 1}
       expect(response).to have_http_status(401)
     end
@@ -48,19 +48,19 @@ RSpec.describe Users::PasswordResetsController, type: :controller do
   describe "PATCH #update" do
     let(:new_password) { "new_password" }
     it do
-      user.generate_password_token!
+      UserHandler.new(user).generate_password_token!
       patch :update, params: {token: user.reset_password_token, password: new_password, password_confirmation: new_password}
       expect(response).to be_successful
     end
 
     it "returns 422 if passwords do not match" do
-      user.generate_password_token!
+      UserHandler.new(user).generate_password_token!
       patch :update, params: {token: user.reset_password_token, password: new_password, password_confirmation: 1}
       expect(response).to have_http_status(422)
     end
 
     it "returns 400 if param is missing" do
-      user.generate_password_token!
+      UserHandler.new(user).generate_password_token!
       patch :update, params: {token: user.reset_password_token, password: new_password}
       expect(response).to have_http_status(400)
     end

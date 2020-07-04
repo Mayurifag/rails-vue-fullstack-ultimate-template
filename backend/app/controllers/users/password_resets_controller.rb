@@ -6,7 +6,7 @@ module Users
     def create
       user = User.find_by(email: params[:email])
       if user
-        user.generate_password_token!
+        UserHandler.new(user).generate_password_token!
         UserMailer.reset_password(user).deliver_now
       end
 
@@ -19,7 +19,7 @@ module Users
 
     def update
       @user.update!(password_params)
-      @user.clear_password_token!
+      UserHandler.new(@user).clear_password_token!
       JWTSessions::Session.new(namespace: "user_#{@user.id}").flush_namespaced
       json_response("Password successfully updated")
     end
