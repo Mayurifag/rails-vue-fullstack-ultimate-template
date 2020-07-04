@@ -13,7 +13,6 @@ module Users
       json_response("Mail should be delivered to your email if it exists in system")
     end
 
-    # TODO: возможно не нужно
     def show
       render json: :ok
     end
