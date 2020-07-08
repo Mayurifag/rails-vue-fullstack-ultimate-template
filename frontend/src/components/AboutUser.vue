@@ -1,16 +1,10 @@
-<template>
-  <div>
-    <AppHeader></AppHeader>
-    <h3>About User</h3>
-    Your email is {{ user.email }} and you are {{ user.role }} user.
-  </div>
+<template lang="pug">
+  el-row(type="flex" justify="space-around")
+    | Your email is {{ user.email }} and you are {{ user.role }} user.
 </template>
 
 <script>
-import AppHeader from '@/components/AppHeader'
-
 export default {
-  name: 'AboutUser',
   data () {
     return {
       user: {}
@@ -29,7 +23,6 @@ export default {
     setError (error, text) {
       this.error = (error.response && error.response.data && error.response.data.error) || text
     }
-  },
-  components: { AppHeader }
+  }
 }
 </script>

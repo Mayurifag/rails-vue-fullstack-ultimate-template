@@ -10,12 +10,9 @@ export const store = new Vuex.Store({
     csrf: null
   },
   getters: {
-    isAdmin (state) {
-      return state.currentUser && state.currentUser.role === 'admin'
-    },
-    currentUserId (state) {
-      return state.currentUser && state.currentUser.id
-    }
+    // isAdmin (state) {
+    //   return state.currentUser && state.currentUser.role === 'admin'
+    // },
   },
   mutations: {
     setCurrentUser (state, { currentUser, csrf }) {

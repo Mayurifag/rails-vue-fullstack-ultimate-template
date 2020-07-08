@@ -24,7 +24,6 @@
 
 <script>
 export default {
-  name: 'Signup',
   data () {
     return {
       email: '',
