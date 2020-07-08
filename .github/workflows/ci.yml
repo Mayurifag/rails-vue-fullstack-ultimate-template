@@ -82,8 +82,9 @@ jobs:
           fetch-depth: 1
 
       - name: Run Editorconfig
-        run: docker run --rm --volume=$PWD:/check mstruebing/editorconfig-checker
-#######################################
+        run: |
+          docker run --rm --volume=$PWD:/check mstruebing/editorconfig-checker
+
   yamllint:
     runs-on: ubuntu-latest
     steps:
@@ -381,6 +382,11 @@ jobs:
           key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
           restore-keys: |
             ${{ runner.os }}-gem-
+
+      - name: Start Redis v6
+        uses: superchargejs/redis-github-action@1.1.0
+        with:
+          redis-version: 6
 
       - name: Build DB and run Rspec
         working-directory: ./backend

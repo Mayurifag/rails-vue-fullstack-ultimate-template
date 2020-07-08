@@ -35,7 +35,8 @@ module Users
 
     def set_user
       @user = User.find_by(reset_password_token: params[:token])
-      raise ResetPasswordError unless @user&.reset_password_token_expires_at && @user.reset_password_token_expires_at > Time.current
+      raise ResetPasswordError unless @user&.reset_password_token_expires_at &&
+        @user.reset_password_token_expires_at > Time.current
     end
   end
 end

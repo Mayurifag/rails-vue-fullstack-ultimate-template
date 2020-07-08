@@ -38,7 +38,7 @@ securedAxiosInstance.interceptors.response.use(null, error => {
         plainAxiosInstance.get('/api/users/whoami')
           .then(meResponse => store.commit('setCurrentUser', { currentUser: meResponse.data, csrf: response.data.csrf }))
         // And after successful refresh - repeat the original request
-        let retryConfig = error.response.config
+        const retryConfig = error.response.config
         retryConfig.headers['X-CSRF-TOKEN'] = response.data.csrf
         return plainAxiosInstance.request(retryConfig)
       }).catch(error => {

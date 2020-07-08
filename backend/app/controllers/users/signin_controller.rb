@@ -6,7 +6,11 @@ module Users
       user = User.find_by!(email: user_params[:email])
       if user.authenticate(user_params[:password])
         payload = {user_id: user.id, aud: [user.role]}
-        session = JWTSessions::Session.new(payload: payload, refresh_by_access_allowed: true, namespace: "user_#{user.id}")
+        session = JWTSessions::Session.new(
+          payload: payload,
+          refresh_by_access_allowed: true,
+          namespace: "user_#{user.id}"
+        )
         tokens = session.login
         response.set_cookie(JWTSessions.access_cookie, value: tokens[:access], httponly: true, secure: Rails.env.production?)
 
