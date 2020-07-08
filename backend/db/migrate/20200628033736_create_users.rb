@@ -19,6 +19,6 @@ class CreateUsers < ActiveRecord::Migration[6.0]
 
       t.timestamps
     end
-    add_index :users, ["lower(email)"], name: "index_users_on_lower_email_index", unique: true
+    add_index :users, "lower(email)", name: "index_users_on_lower_email", unique: true
   end
 end
