@@ -9,13 +9,13 @@ module ExceptionHandler
       unauthorized(exception.message)
     end
 
-    rescue_from JWTSessions::Errors::ClaimsVerification do |exception|
-      forbidden(exception.message)
-    end
+    # rescue_from JWTSessions::Errors::ClaimsVerification do |exception|
+    #   forbidden(exception.message)
+    # end
 
-    rescue_from ActiveRecord::RecordNotFound do |exception|
-      not_found(exception.message)
-    end
+    # rescue_from ActiveRecord::RecordNotFound do |exception|
+    #   not_found(exception.message)
+    # end
 
     rescue_from ActionController::ParameterMissing do |exception|
       bad_request(exception.message)
@@ -44,7 +44,7 @@ module ExceptionHandler
     json_response({errors: message}, :bad_request)
   end
 
-  def forbidden(message = "Forbidden")
-    json_response({errors: message}, :forbidden)
-  end
+  # def forbidden(message = "Forbidden")
+  #   json_response({errors: message}, :forbidden)
+  # end
 end

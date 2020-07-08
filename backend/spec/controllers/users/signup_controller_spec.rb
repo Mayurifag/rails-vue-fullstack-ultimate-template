@@ -5,7 +5,9 @@ RSpec.describe Users::SignupController, type: :controller do
     subject { post :create, params: user_params }
 
     context "with valid params" do
-      let(:user_params) { {email: "test@email.com", password: "password", password_confirmation: "password"} }
+      let(:user_params) do
+        {email: "test@email.com", password: "password", password_confirmation: "password"}
+      end
 
       it "returns http success" do
         subject
@@ -21,7 +23,9 @@ RSpec.describe Users::SignupController, type: :controller do
     end
 
     context "with invalid params" do
-      let(:user_params) { {email: "test@email.com", password: "password123", password_confirmation: "password456"} }
+      let(:user_params) do
+        {email: "test@email.com", password: "password123", password_confirmation: "password456"}
+      end
 
       it "returns error" do
         subject

@@ -46,23 +46,49 @@ RSpec.describe Users::PasswordResetsController, type: :controller do
   end
 
   describe "PATCH #update" do
+    subject { patch :update, params: params }
     let(:new_password) { "new_password" }
-    it do
-      UserHandler.new(user).generate_password_token!
-      patch :update, params: {token: user.reset_password_token, password: new_password, password_confirmation: new_password}
-      expect(response).to be_successful
+
+    context "with valid params" do
+      let(:params) do
+        {
+          token: user.reset_password_token,
+          password: new_password,
+          password_confirmation: new_password
+        }
+      end
+
+      it do
+        UserHandler.new(user).generate_password_token!
+        subject
+        expect(response).to be_successful
+      end
     end
 
-    it "returns 422 if passwords do not match" do
-      UserHandler.new(user).generate_password_token!
-      patch :update, params: {token: user.reset_password_token, password: new_password, password_confirmation: 1}
-      expect(response).to have_http_status(422)
+    context "when passwords do not match" do
+      let(:params) do
+        {
+          token: user.reset_password_token,
+          password: new_password,
+          password_confirmation: 1
+        }
+      end
+
+      it "returns 422" do
+        UserHandler.new(user).generate_password_token!
+        subject
+        expect(response).to have_http_status(422)
+      end
     end
 
-    it "returns 400 if param is missing" do
-      UserHandler.new(user).generate_password_token!
-      patch :update, params: {token: user.reset_password_token, password: new_password}
-      expect(response).to have_http_status(400)
+    context "when param is missing" do
+      let(:params) { {token: user.reset_password_token, password: new_password} }
+
+      it "returns 400 if param is missing" do
+        UserHandler.new(user).generate_password_token!
+        subject
+        expect(response).to have_http_status(400)
+      end
     end
   end
 end

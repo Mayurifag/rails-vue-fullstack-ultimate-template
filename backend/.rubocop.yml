@@ -13,7 +13,7 @@ AllCops:
     - db/schema.rb
     - vendor/**/*
 
-Metrics/LineLength:
+Layout/LineLength:
   Max: 100
   IgnoredPatterns: ['\A#']
 
