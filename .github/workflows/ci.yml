@@ -11,6 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
+
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
@@ -36,6 +39,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
+
       - uses: actions/setup-node@v1
         with:
           node-version: '12.x'
@@ -61,14 +67,27 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
+
       - name: Run dockerized Cypress
         run: |
           make cypress
+#######################################
+  eslintonfig-checker:
+    runs-on: ubuntu-latest
+    name: Editor Config Checker
+    steps:
+        - name: EditorConfig-Action
+        - uses: zbeekman/EditorConfig-Action@v1.1.1
 #######################################
   yamllint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
+
       - name: Set up Python 3.x
         uses: actions/setup-python@v1
         with:
@@ -85,6 +104,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -101,6 +122,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
+
       - uses: actions/setup-ruby@v1
         with:
           ruby-version: 2.7.x
@@ -115,6 +139,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -131,6 +157,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -147,6 +175,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -163,6 +193,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -192,6 +224,8 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -241,6 +275,8 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -290,6 +326,8 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -339,6 +377,8 @@ jobs:
           --health-retries 5
     steps:
       - uses: actions/checkout@v1
+        with:
+            fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1

@@ -10,6 +10,7 @@ trim_trailing_whitespace = true
 insert_final_newline = true
 
 [*.md]
+indent_size =
 trim_trailing_whitespace = false
 
 [{Makefile,**.mk}]
@@ -18,3 +19,9 @@ indent_style = tab
 
 [Dockerfile]
 indent_size = 4
+
+[{Gemfile.lock,**.sql}]
+indent_size =
+
+[credentials.yml.enc]
+insert_final_newline = false

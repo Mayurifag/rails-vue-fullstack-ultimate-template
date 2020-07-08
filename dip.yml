@@ -80,7 +80,7 @@ interaction:
     command: psql -h db -U postgres -d backend_development
 
 provision:
-  - dip down
+  - dip down --remove-orphans
   - dip compose build
   - dip yarn
   - dip bundle config config --global jobs 4

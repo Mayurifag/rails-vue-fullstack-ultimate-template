@@ -13,9 +13,11 @@ RSpec.describe Users::RefreshController, type: :controller do
         # set expiration time to 0 to create an already expired access token
         JWTSessions.access_exp_time = 0
         payload = {user_id: user.id, aud: [user.role]}
-        session = JWTSessions::Session.new(payload: payload,
-                                           refresh_by_access_allowed: true,
-                                           namespace: "user_#{user.id}")
+        session = JWTSessions::Session.new(
+          payload: payload,
+          refresh_by_access_allowed: true,
+          namespace: "user_#{user.id}"
+        )
         @tokens = session.login
         JWTSessions.access_exp_time = 3600
       end
@@ -35,9 +37,11 @@ RSpec.describe Users::RefreshController, type: :controller do
     context "with not expired token" do
       before do
         payload = {user_id: user.id}
-        session = JWTSessions::Session.new(payload: payload,
-                                           refresh_by_access_allowed: true,
-                                           namespace: "user_#{user.id}")
+        session = JWTSessions::Session.new(
+          payload: payload,
+          refresh_by_access_allowed: true,
+          namespace: "user_#{user.id}"
+        )
         @tokens = session.login
       end
 

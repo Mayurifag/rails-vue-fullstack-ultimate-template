@@ -27,7 +27,7 @@ RUN apk add --update --no-cache \
     && cp ~/.gemrc /etc/gemrc \
     && chmod +r /etc/gemrc \
     && gem install bundler -v '~> 2' \
-  ;
+    ;
 
 WORKDIR /usr/src/app
 
