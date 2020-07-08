@@ -19,6 +19,7 @@ gem "rack-cors"
 gem "redis"
 gem "strong_migrations"
 gem "nilify_blanks"
+gem "awesome_rails_console", github: "xunker/awesome_rails_console", branch: "pry-0.13.0-compatibility"
 
 group :development, :test do
   gem "byebug", platforms: %i[mri mingw x64_mingw]
@@ -31,8 +32,6 @@ group :development, :test do
   gem "rspec-rails"
   gem "ruby-prof", ">= 0.16.0", require: false
   gem "stackprof", ">= 0.2.9", require: false
-  gem "pry-coolline", github: 'owst/pry-coolline', branch: 'support_new_pry_config_api'
-  gem "spirit_hands"
 end
 
 group :development do

@@ -12,7 +12,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-            fetch-depth: 1
+          fetch-depth: 1
 
       - uses: actions/setup-node@v1
         with:
@@ -40,7 +40,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-            fetch-depth: 1
+          fetch-depth: 1
 
       - uses: actions/setup-node@v1
         with:
@@ -68,25 +68,28 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-            fetch-depth: 1
+          fetch-depth: 1
 
       - name: Run dockerized Cypress
         run: |
           make cypress
 #######################################
-  eslintonfig-checker:
+  editorconfig-checker:
     runs-on: ubuntu-latest
-    name: Editor Config Checker
     steps:
-        - name: EditorConfig-Action
-        - uses: zbeekman/EditorConfig-Action@v1.1.1
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Run Editorconfig
+        run: docker run --rm --volume=$PWD:/check mstruebing/editorconfig-checker
 #######################################
   yamllint:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v1
         with:
-            fetch-depth: 1
+          fetch-depth: 1
 
       - name: Set up Python 3.x
         uses: actions/setup-python@v1
@@ -105,7 +108,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-            fetch-depth: 1
+          fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -123,7 +126,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-            fetch-depth: 1
+          fetch-depth: 1
 
       - uses: actions/setup-ruby@v1
         with:
@@ -140,7 +143,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-            fetch-depth: 1
+          fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -158,7 +161,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-            fetch-depth: 1
+          fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -176,7 +179,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-            fetch-depth: 1
+          fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -188,24 +191,6 @@ jobs:
         run: |
           gem install bundler bundler-audit
           bundle audit check --update
-#######################################
-  rails-best-practices:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-        with:
-            fetch-depth: 1
-
-      - name: Set up Ruby 2.7
-        uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 2.7.x
-
-      - name: rails_best_practices
-        working-directory: ./backend
-        run: |
-          gem install rails_best_practices
-          rails_best_practices .
 #######################################
   rubocop:
     runs-on: ubuntu-latest
@@ -225,7 +210,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-            fetch-depth: 1
+          fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -276,7 +261,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-            fetch-depth: 1
+          fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -327,7 +312,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-            fetch-depth: 1
+          fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
@@ -378,7 +363,7 @@ jobs:
     steps:
       - uses: actions/checkout@v1
         with:
-            fetch-depth: 1
+          fetch-depth: 1
 
       - name: Set up Ruby 2.7
         uses: actions/setup-ruby@v1
