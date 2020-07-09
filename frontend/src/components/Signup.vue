@@ -1,25 +1,19 @@
-  <template>
-  <form class="form-app form-signup p-5" @submit.prevent="signup">
-    <div class="alert alert-danger" v-if="error">{{ error }}</div>
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input v-model="email" type="email" class="form-control" id="email" placeholder="email@example.com">
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input v-model="password" type="password" class="form-control" id="password" placeholder="Password">
-    </div>
-    <div class="form-group">
-      <label for="password">Password Confirmation</label>
-      <input v-model="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="Password Confirmation">
-    </div>
-    <button type="submit" class="btn btn-primary mb-3">Sign up</button>
-    <div>
-      <router-link to="/">Sign in</router-link>
-      <br />
-      <router-link to="/forgot_password">Forgot Password</router-link>
-    </div>
-  </form>
+<template lang="pug">
+  .auth-card
+    el-card
+      h2.mb-1em Sign up
+      el-form(ref="form" label-width="8em" @submit.native.prevent="signup")
+        el-form-item(prop="email" label="Email")
+          el-input(v-model="email" placeholder="Enter your email")
+        el-form-item(prop="password" label="Password")
+          el-input(v-model="password" placeholder="Enter your password")
+        el-form-item(prop="password_confirmation" label="Pass confirm")
+          el-input(v-model="password_confirmation" placeholder="Confirm your password")
+
+        el-form-item(label-width="0")
+          el-button(type="primary" native-type="submit" block) Sign up
+      router-link(to="/forgot_password") Forgot Password?
+      router-link(to="/" class="display-block mt-1em") Sign In
 </template>
 
 <script>
@@ -69,3 +63,6 @@ export default {
   }
 }
 </script>
+<style lang="scss" scoped>
+@import '../assets/shared_auth_styles.css';
+</style>

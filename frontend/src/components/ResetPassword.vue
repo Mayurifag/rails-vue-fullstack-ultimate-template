@@ -1,25 +1,20 @@
-<template>
-  <form class="form-app form-reset-password" @submit.prevent="reset">
-    <div class="alert alert-info" v-if="notice">{{ notice }}</div>
-    <div class="alert alert-danger" v-if="error">{{ error }}</div>
-    <div class="form-group">
-      <label for="password">New Password</label>
-      <input v-model="password" type="password" class="form-control" id="password" placeholder="Password">
-    </div>
-    <div class="form-group">
-      <label for="password">Password Confirmation</label>
-      <input v-model="password_confirmation" type="password" class="form-control" id="password_confirmation" placeholder="Password Confirmation">
-    </div>
-    <button type="submit" class="btn btn-primary mb-3">Reset password</button>
-    <div>
-      <router-link to="/">Sign in</router-link>
-    </div>
-  </form>
+<template lang="pug">
+  .auth-card
+    el-card
+      h2.mb-1em Reset password
+      el-form(ref="form" label-width="8em" @submit.native.prevent="reset")
+        el-form-item(prop="password" label="Password")
+          el-input(v-model="password" placeholder="Enter your password")
+        el-form-item(prop="password_confirmation" label="Pass confirm")
+          el-input(v-model="password_confirmation" placeholder="Confirm your password")
+        el-form-item(label-width="0")
+          el-button(type="primary" native-type="submit" block) Reset Password
+      router-link(to="/") Sign In
+      router-link(to="/signup" class="display-block mt-1em") Sign Up
 </template>
 
 <script>
 export default {
-  name: 'ResetPassword',
   data () {
     return {
       password: '',
@@ -42,6 +37,7 @@ export default {
       this.error = ''
       this.password = ''
       this.password_confirmation = ''
+      this.$router.replace('/')
     },
     resetFailed (error) {
       this.error = (error.response && error.response.data && error.response.data.error) || 'Something went wrong'

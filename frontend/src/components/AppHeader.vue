@@ -2,7 +2,7 @@
   el-menu(:router="true" :default-active="activeLink" mode="horizontal")
       template(v-if="this.$store.state.signedIn")
         .dock-right
-          el-submenu(index='/about_user' show-timeout=0 hide-timeout=100)
+          el-submenu(index='/about_user')
             template(slot="title") {{ this.$store.state.currentUser.email }}
             el-menu-item(@click="LogoutUser") Logout
       template(v-else)
@@ -34,8 +34,9 @@ export default {
   }
 }
 </script>
+
 <style lang="scss" scoped>
-  .dock-right {
-    float: right !important;
-  }
+.dock-right {
+  float: right !important;
+}
 </style>

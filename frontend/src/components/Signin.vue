@@ -1,26 +1,23 @@
-<template>
-  <form class="form-app form-signin p-5" @submit.prevent="signin">
-    <div class="alert alert-danger" v-if="error">{{ error }}</div>
-    <div class="form-group">
-      <label for="email">Email address</label>
-      <input v-model="email" type="email" class="form-control" id="email" placeholder="email@example.com">
-    </div>
-    <div class="form-group">
-      <label for="password">Password</label>
-      <input v-model="password" type="password" class="form-control" id="password" placeholder="Password">
-    </div>
-    <button type="submit" class="btn btn-primary mb-3">Sign in</button>
-    <div>
-      <router-link to="/signup">Sign up</router-link>
-      <br />
-      <router-link to="/forgot_password">Forgot Password</router-link>
-    </div>
-  </form>
+<template lang="pug">
+  .auth-card
+    el-card
+      h2.mb-1em Sign in
+      el-form(ref="form" label-width="6em" @submit.native.prevent="signin")
+        el-form-item(prop="email" label="Email")
+          el-input(v-model="email" placeholder="Enter your email")
+        el-form-item(prop="password" label="Password")
+          el-input(v-model="password" placeholder="Enter your password")
+        el-form-item(label-width="0")
+          el-button(type="primary" native-type="submit" block) Login
+      router-link(to="/forgot_password") Forgot Password?
+      router-link(to="/signup" class="display-block mt-1em") Sign Up
 </template>
 
 <script>
+// TODO: сделать отображение ошибок toast'ом или около того
+// TODO: валидации props для формочки
+// TODO: поле пароля кастомное + скрыть значения и тд
 export default {
-  name: 'Signin',
   data () {
     return {
       email: '',
@@ -65,3 +62,7 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+@import '../assets/shared_auth_styles.css';
+</style>
