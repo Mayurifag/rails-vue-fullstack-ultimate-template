@@ -20,3 +20,10 @@
 
 /vendor/bundle
 coverage
+
+/config/*.local.yml
+/config/credentials/local.*
+
+/config/credentials/local.key
+
+/config/credentials/production.key

@@ -1,1 +1,1 @@
-JWTSessions.encryption_key = "TODO: change this"
+JWTSessions.encryption_key = JwtConfig.encryption_key

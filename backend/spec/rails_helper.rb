@@ -19,8 +19,6 @@ if ENV["TEST_ENV_NUMBER"]
 end
 SimpleCov.start "rails"
 
-# lib is required due to simplecov coverage
-Dir[Rails.root.join("lib", "*.rb")].each { |f| load f }
 Dir[Rails.root.join("spec", "support", "**", "*.rb")].sort.each { |f| require f }
 
 begin

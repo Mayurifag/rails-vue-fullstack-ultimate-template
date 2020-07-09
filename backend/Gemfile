@@ -7,6 +7,7 @@ ruby File.read(File.expand_path(".ruby-version", __dir__)).chomp
 
 gem "rails"
 
+gem "anyway_config"
 gem "bcrypt"
 gem "bootsnap", require: false
 gem "fast_blank", platform: :mri

@@ -297,6 +297,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  anyway_config
   awesome_rails_console!
   bcrypt
   bootsnap
