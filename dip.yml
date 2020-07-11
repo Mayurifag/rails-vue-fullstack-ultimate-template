@@ -81,6 +81,7 @@ interaction:
 
 provision:
   - dip down --remove-orphans
+  - docker network create application-network
   - dip compose build
   - dip yarn
   - dip bundle config config --global jobs 4

@@ -70,7 +70,8 @@ services:
     command: yarn run serve
     ports:
       - "3333:8080"
-
+    expose:
+      - "8080"
 volumes:
   db-data:
   redis:
@@ -78,3 +79,8 @@ volumes:
   node_modules:
   rails_cache:
   packs:
+
+networks:
+  default:
+    external:
+      name: application-network

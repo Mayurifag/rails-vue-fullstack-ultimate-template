@@ -70,8 +70,12 @@ jobs:
         with:
           fetch-depth: 1
 
-      - name: Run dockerized Cypress
+      - name: Run dockerized Cypress (+ see if dip provision works)
         run: |
+          DIP_LINK=https://github.com/bibendi/dip/releases/download/v6.0.0/dip-Linux-x86_64
+          curl -L $DIP_LINK > ./dip
+          chmod +x ./dip
+          ./dip provision
           make cypress
 #######################################
   editorconfig-checker:

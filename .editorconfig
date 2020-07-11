@@ -23,5 +23,5 @@ indent_size = 4
 [{Gemfile.lock,**.sql}]
 indent_size =
 
-[credentials.yml.enc]
+[{**.yml.enc}]
 insert_final_newline = false
