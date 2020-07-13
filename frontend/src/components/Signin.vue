@@ -17,6 +17,9 @@
 // TODO: сделать отображение ошибок toast'ом или около того
 // TODO: валидации props для формочки
 // TODO: поле пароля кастомное + скрыть значения и тд
+// TODO: добавить везде апишку
+import api from '@api'
+
 export default {
   data () {
     return {
@@ -33,7 +36,7 @@ export default {
   },
   methods: {
     signin () {
-      this.$http.plain.post('/api/users/signin', { email: this.email, password: this.password })
+      api.signIn(this.email, this.password)
         .then(response => this.signinSuccessful(response))
         .catch(error => this.signinFailed(error))
     },

@@ -1,7 +1,9 @@
+import Vue from 'vue'
+import VueAxios from 'vue-axios'
 import axios from 'axios'
-import { store } from './../store'
+import { store } from '@store'
 
-const API_URL = 'http://localhost:8888'
+const API_URL = process.env.VUE_APP_API_HOST || ''
 
 const securedAxiosInstance = axios.create({
   baseURL: API_URL,
@@ -36,7 +38,7 @@ securedAxiosInstance.interceptors.response.use(null, error => {
     return plainAxiosInstance.post('/api/users/refresh', {}, { headers: { 'X-CSRF-TOKEN': store.state.csrf } })
       .then(response => {
         plainAxiosInstance.get('/api/users/whoami')
-          .then(meResponse => store.commit('setCurrentUser', { currentUser: meResponse.data, csrf: response.data.csrf }))
+          .then(result => store.commit('setCurrentUser', { currentUser: result.data, csrf: response.data.csrf }))
         // And after successful refresh - repeat the original request
         const retryConfig = error.response.config
         retryConfig.headers['X-CSRF-TOKEN'] = response.data.csrf
@@ -50,6 +52,11 @@ securedAxiosInstance.interceptors.response.use(null, error => {
   } else {
     return Promise.reject(error)
   }
+})
+
+Vue.use(VueAxios, {
+  secured: securedAxiosInstance,
+  plain: plainAxiosInstance
 })
 
 export { securedAxiosInstance, plainAxiosInstance }
