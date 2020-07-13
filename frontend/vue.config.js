@@ -17,5 +17,11 @@ module.exports = {
         '@plugins': path.resolve(__dirname, 'src/plugins')
       }
     }
+  },
+  pluginOptions: {
+    webpackBundleAnalyzer: {
+      // openAnalyzer: true,
+      analyzerPort: 8889
+    }
   }
 }
