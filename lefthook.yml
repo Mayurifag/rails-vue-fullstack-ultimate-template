@@ -6,9 +6,6 @@ pre-commit:
     yarn:
       glob: "*.{js,ts,vue}"
       runner: "dip yarn fix && git add {staged_files}"
-    stylelint:
-      glob: "*.{js,ts,vue}"
-      runnter: dip yarn css:lint
     rubocop:
       glob: "*.rb"
       runner: >
@@ -29,6 +26,8 @@ pre-push:
       runnter: dip yarn css:lint
     rubocop:
       runner: dip bundle exec rubocop
+    editorconfig:
+      runner: docker run --rm --volume=$PWD:/check mstruebing/editorconfig-checker
 
 commands: &commands
   bundle-install:
