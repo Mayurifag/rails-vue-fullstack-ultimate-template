@@ -4,6 +4,10 @@
 </template>
 
 <script>
+import usersApi from '@api/users'
+import messageToast from '@lib/messageToast'
+// import { mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
@@ -11,17 +15,19 @@ export default {
     }
   },
   created () {
-    if (!this.$store.state.signedIn) {
+    if (!this.$store.state.user.signedIn) {
+      messageToast.showMessage('Authorize before continue')
       this.$router.replace('/')
     } else {
-      this.$http.secured.get('/api/users/whoami')
+      usersApi.securedWhoami()
         .then(response => { this.user = response.data })
-        .catch(error => { this.setError(error, 'Something went wrong') })
+        .catch(error => { this.showError(error, 'Something went wrong') })
     }
   },
   methods: {
     setError (error, text) {
-      this.error = (error.response && error.response.data && error.response.data.error) || text
+      const msgError = (error.response && error.response.data && error.response.data.error) || text
+      messageToast.showError(msgError)
     }
   }
 }

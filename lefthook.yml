@@ -27,7 +27,8 @@ pre-push:
     rubocop:
       runner: dip bundle exec rubocop
     editorconfig:
-      runner: docker run --rm --volume=$PWD:/check mstruebing/editorconfig-checker
+      runner: |
+        docker run --rm --volume=$PWD:/check mstruebing/editorconfig-checker
 
 commands: &commands
   bundle-install:

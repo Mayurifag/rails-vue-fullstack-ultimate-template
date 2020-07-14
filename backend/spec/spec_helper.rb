@@ -3,6 +3,17 @@
 require "shoulda/matchers"
 require "zonebie/rspec"
 require "webmock/rspec"
+require "simplecov"
+
+if ENV["TEST_ENV_NUMBER"]
+  require "simplecov-console"
+  SimpleCov.formatter = SimpleCov::Formatter::Console
+  SimpleCov.at_exit do
+    result = SimpleCov.result
+    result.format! if ParallelTests.number_of_running_processes <= 1
+  end
+end
+SimpleCov.start "rails"
 
 WebMock.disable_net_connect!(allow: [])
 

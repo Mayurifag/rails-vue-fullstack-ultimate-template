@@ -14,51 +14,53 @@
 </template>
 
 <script>
-// TODO: сделать отображение ошибок toast'ом или около того
 // TODO: валидации props для формочки
 // TODO: поле пароля кастомное + скрыть значения и тд
-// TODO: добавить везде апишку
-import api from '@api'
+// TODO: добавить везде апишку / store
+import usersApi from '@api/users'
+// import messageToast from '@lib/messageToast'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   data () {
     return {
       email: '',
-      password: '',
-      error: ''
+      password: ''
     }
   },
   created () {
-    this.checkSignedIn()
+    this.redirectToDashboardIfSignedIn()
   },
   updated () {
-    this.checkSignedIn()
+    this.redirectToDashboardIfSignedIn()
+  },
+  getters: {
+    ...mapGetters('user', ['isAuthorized'])
   },
   methods: {
+    ...mapActions('user', ['unsetCurrentUser', 'setCurrentUser']),
     signin () {
-      api.signIn(this.email, this.password)
+      usersApi.signIn(this.email, this.password)
         .then(response => this.signinSuccessful(response))
         .catch(error => this.signinFailed(error))
     },
     signinSuccessful (response) {
       if (!response.data.csrf) {
-        this.signinFailed(response)
-        return
+        return (this.signinFailed(response))
       }
-      this.$http.plain.get('/api/users/whoami')
-        .then(meResponse => {
-          this.$store.commit('setCurrentUser', { currentUser: meResponse.data, csrf: response.data.csrf })
-          this.error = ''
+      usersApi.whoami()
+        .then(whoamiResponse => {
+          this.setCurrentUser({ currentUser: whoamiResponse.data, csrf: response.data.csrf })
           this.$router.replace('/about_user')
         })
         .catch(error => this.signinFailed(error))
     },
     signinFailed (error) {
-      this.error = (error.response && error.response.data && error.response.data.error) || ''
-      this.$store.commit('unsetCurrentUser')
+      const errorMessage = error.response && error.response.data && error.response.data.error
+      this.unsetCurrentUser({ errorMessage: errorMessage })
     },
-    checkSignedIn () {
-      if (this.$store.state.signedIn) {
+    redirectToDashboardIfSignedIn () {
+      if (this.$store.state.user.signedIn) {
         this.$router.replace('/about_user')
       }
     }
@@ -67,5 +69,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/shared_auth_styles.css';
+  @import '../assets/shared_auth_styles.css';
 </style>
