@@ -10,9 +10,5 @@ export default {
     state.currentUser = {}
     state.signedIn = false
     state.csrf = null
-  },
-  [types.REFRESH_TOKEN] (state, csrf) {
-    state.signedIn = true
-    state.csrf = csrf
   }
 }

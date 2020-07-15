@@ -6,6 +6,7 @@
 <script>
 import usersApi from '@api/users'
 import messageToast from '@lib/messageToast'
+import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -13,8 +14,11 @@ export default {
       user: {}
     }
   },
+  computed: {
+    ...mapGetters('user', ['isAuthorized'])
+  },
   created () {
-    if (this.$store.state.user.signedIn) {
+    if (this.isAuthorized) {
       usersApi.securedWhoami()
         .then(response => { this.user = response.data })
         .catch(error => { this.showError(error) })

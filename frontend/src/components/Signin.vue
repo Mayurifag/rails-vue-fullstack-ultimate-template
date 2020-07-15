@@ -16,9 +16,7 @@
 <script>
 // TODO: валидации props для формочки
 // TODO: поле пароля кастомное + скрыть значения и тд
-// TODO: добавить везде апишку / store
 import usersApi from '@api/users'
-// import messageToast from '@lib/messageToast'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
@@ -34,7 +32,7 @@ export default {
   updated () {
     this.redirectToDashboardIfSignedIn()
   },
-  getters: {
+  computed: {
     ...mapGetters('user', ['isAuthorized'])
   },
   methods: {
@@ -60,7 +58,7 @@ export default {
       this.unsetCurrentUser({ errorMessage: errorMessage })
     },
     redirectToDashboardIfSignedIn () {
-      if (this.$store.state.user.signedIn) {
+      if (this.isAuthorized) {
         this.$router.replace('/about_user')
       }
     }

@@ -1,6 +1,6 @@
 <template lang="pug">
   el-menu(:router="true" :default-active="activeLink" mode="horizontal")
-      template(v-if="this.$store.state.user.signedIn")
+      template(v-if="this.isAuthorized")
         .dock-right
           el-submenu(index='/about_user')
             template(slot="title") {{ this.$store.state.user.currentUser.email }}
@@ -11,7 +11,7 @@
 </template>
 
 <script>
-import { mapActions } from 'vuex'
+import { mapActions, mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -23,6 +23,9 @@ export default {
     $route (to, from) {
       this.activeLink = to.path
     }
+  },
+  computed: {
+    ...mapGetters('user', ['isAuthorized'])
   },
   mounted: function () {
     this.activeLink = this.$route.path

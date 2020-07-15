@@ -1,7 +1,15 @@
 import * as actions from './actions'
 import mutations from './mutations'
-import getters from './getters'
 import { initialState } from './state'
+
+const getters = {
+  isAuthorized (state) {
+    return state.signedIn
+  },
+  getCsrfToken (state) {
+    return state.csrf
+  }
+}
 
 export default {
   namespaced: true,
