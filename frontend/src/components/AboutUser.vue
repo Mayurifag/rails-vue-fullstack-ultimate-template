@@ -6,7 +6,6 @@
 <script>
 import usersApi from '@api/users'
 import messageToast from '@lib/messageToast'
-// import { mapGetters } from 'vuex'
 
 export default {
   data () {
@@ -15,18 +14,18 @@ export default {
     }
   },
   created () {
-    if (!this.$store.state.user.signedIn) {
-      messageToast.showMessage('Authorize before continue')
-      this.$router.replace('/')
-    } else {
+    if (this.$store.state.user.signedIn) {
       usersApi.securedWhoami()
         .then(response => { this.user = response.data })
-        .catch(error => { this.showError(error, 'Something went wrong') })
+        .catch(error => { this.showError(error) })
+    } else {
+      messageToast.showMessage('Authorize before continue')
+      this.$router.replace('/')
     }
   },
   methods: {
-    showError (error, text) {
-      const msgError = (error.response && error.response.data && error.response.data.error) || text
+    showError (error) {
+      const msgError = (error.response && error.response.data && error.response.data.error) || 'Something went wrong'
       messageToast.showError(msgError)
     }
   }

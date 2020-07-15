@@ -11,9 +11,6 @@ pre-commit:
       runner: >
         dip bundle exec rubocop --safe-auto-correct &&
         git add {staged_files}
-    yamllint:
-      glob: "*.{yaml,yml}"
-      runner: yamllint --strict .
 
 pre-push:
   parallel: true
@@ -25,10 +22,14 @@ pre-push:
     stylelint:
       runnter: dip yarn css:lint
     rubocop:
-      runner: dip bundle exec rubocop
+      runner: dip bundle exec rubocop --parallel
     editorconfig:
       runner: |
         docker run --rm --volume=$PWD:/check mstruebing/editorconfig-checker
+    yamllint:
+      glob: "*.{yaml,yml}"
+      runner: yamllint --strict .
+
 
 commands: &commands
   bundle-install:

@@ -19,7 +19,6 @@ export default {
       activeLink: null
     }
   },
-
   watch: {
     $route (to, from) {
       this.activeLink = to.path
