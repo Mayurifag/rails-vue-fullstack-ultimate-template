@@ -25,7 +25,7 @@ export default {
     }
   },
   methods: {
-    setError (error, text) {
+    showError (error, text) {
       const msgError = (error.response && error.response.data && error.response.data.error) || text
       messageToast.showError(msgError)
     }

@@ -37,7 +37,7 @@ securedAxiosInstance.interceptors.request.use(config => {
 securedAxiosInstance.interceptors.response.use(null, error => {
   if (error.response && error.response.config && error.response.status === 401) {
     // In case 401 is caused by expired access cookie - we'll do refresh request
-    return usersApi.refreshToken(store.state.csrf)
+    return usersApi.refreshToken(store.state.user.csrf)
       .then(response => {
         usersApi.whoami
           .then(result => store.commit('setCurrentUser', { currentUser: result.data, csrf: response.data.csrf }))

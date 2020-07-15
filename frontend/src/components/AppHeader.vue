@@ -11,6 +11,8 @@
 </template>
 
 <script>
+import { mapActions } from 'vuex'
+
 export default {
   data () {
     return {
@@ -27,8 +29,10 @@ export default {
     this.activeLink = this.$route.path
   },
   methods: {
+    ...mapActions('user', ['unsetCurrentUser']),
+
     LogoutUser () {
-      this.$store.commit('unsetCurrentUser')
+      this.unsetCurrentUser({})
       this.$router.replace('/')
     }
   }
