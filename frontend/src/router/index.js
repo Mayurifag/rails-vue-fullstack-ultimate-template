@@ -1,10 +1,5 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Signin from '@/components/Signin'
-import Signup from '@/components/Signup'
-import ForgotPassword from '@/components/ForgotPassword'
-import ResetPassword from '@/components/ResetPassword'
-import AboutUser from '@/components/AboutUser'
 
 Vue.use(Router)
 
@@ -12,28 +7,28 @@ export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Signin',
-      component: Signin
+      name: 'SignIn',
+      component: () => import(/* webpackChunkName: "signIn" */ '@views/users/SignIn.vue')
     },
     {
       path: '/signup',
-      name: 'Signup',
-      component: Signup
+      name: 'SignUp',
+      component: () => import(/* webpackChunkName: "signUp" */ '@views/users/SignUp.vue')
     },
     {
       path: '/forgot_password',
       name: 'ForgotPassword',
-      component: ForgotPassword
+      component: () => import(/* webpackChunkName: "ForgotPassword" */ '@views/users/ForgotPassword.vue')
     },
     {
       path: '/password_resets/:token',
       name: 'ResetPassword',
-      component: ResetPassword
+      component: () => import(/* webpackChunkName: "ResetPassword" */ '@views/users/ResetPassword.vue')
     },
     {
       path: '/about_user',
       name: 'AboutUser',
-      component: AboutUser
+      component: () => import(/* webpackChunkName: "AboutUser" */ '@views/users/AboutUser.vue')
     }
   ],
   mode: 'history'

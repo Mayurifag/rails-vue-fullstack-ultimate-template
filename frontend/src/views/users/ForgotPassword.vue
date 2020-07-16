@@ -39,5 +39,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '../assets/shared_auth_styles.css';
+@import '@assets/shared_auth_styles'
 </style>
