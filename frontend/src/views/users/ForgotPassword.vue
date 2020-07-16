@@ -4,7 +4,7 @@
       h2.mb-1em Forgot password
       el-form(ref="form" label-width="6em" @submit.native.prevent="submit")
         el-form-item(prop="email" label="Email")
-          el-input(v-model="email" placeholder="Enter your email")
+          el-input(v-model="email" placeholder="Enter your email" clearable)
         el-form-item(label-width="0")
           el-button(type="primary" native-type="submit" block) Reset Password
       router-link(to="/") Sign In

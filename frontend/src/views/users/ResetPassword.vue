@@ -4,9 +4,9 @@
       h2.mb-1em Reset password
       el-form(ref="form" label-width="8em" @submit.native.prevent="reset")
         el-form-item(prop="password" label="Password")
-          el-input(v-model="password" placeholder="Enter your password")
+          el-input(v-model="password" placeholder="Enter your password" show-password)
         el-form-item(prop="password_confirmation" label="Pass confirm")
-          el-input(v-model="password_confirmation" placeholder="Confirm your password")
+          el-input(v-model="password_confirmation" placeholder="Confirm your password" show-password)
         el-form-item(label-width="0")
           el-button(type="primary" native-type="submit" block) Reset Password
       router-link(to="/") Sign In

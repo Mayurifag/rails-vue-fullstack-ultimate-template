@@ -2,13 +2,13 @@
   .auth-card
     el-card
       h2.mb-1em Sign up
-      el-form(ref="form" label-width="8em" @submit.native.prevent="signup")
+      el-form(label-width="8em" @submit.native.prevent="signup")
         el-form-item(prop="email" label="Email")
-          el-input(v-model="email" placeholder="Enter your email")
+          el-input(v-model="email" placeholder="Enter your email" clearable)
         el-form-item(prop="password" label="Password")
-          el-input(v-model="password" placeholder="Enter your password")
+          el-input(v-model="password" placeholder="Enter your password" show-password)
         el-form-item(prop="password_confirmation" label="Pass confirm")
-          el-input(v-model="password_confirmation" placeholder="Confirm your password")
+          el-input(v-model="password_confirmation" placeholder="Confirm your password" show-password)
 
         el-form-item(label-width="0")
           el-button(type="primary" native-type="submit" block) Sign up

@@ -2,28 +2,37 @@
   .auth-card
     el-card
       h2.mb-1em Sign in
-      el-form(ref="form" label-width="6em" @submit.native.prevent="signin")
+      el-form(:model="signInForm" ref="signInForm" :rules="rules" label-width="6em")
         el-form-item(prop="email" label="Email")
-          el-input(v-model="email" placeholder="Enter your email")
+          el-input(v-model="signInForm.email" placeholder="Enter your email" clearable)
         el-form-item(prop="password" label="Password")
-          el-input(v-model="password" placeholder="Enter your password")
+          el-input(v-model="signInForm.password" placeholder="Enter your password" show-password autocomplete="off")
         el-form-item(label-width="0")
-          el-button(type="primary" native-type="submit" block) Login
+          el-button(type="primary" block @click="validateAndSignIn('signInForm')") Login
       router-link(to="/forgot_password") Forgot Password?
       router-link(to="/signup" class="display-block mt-1em") Sign Up
 </template>
 
 <script>
-// TODO: валидации props для формочки
-// TODO: поле пароля кастомное + скрыть значения и тд
 import usersApi from '@api/users'
 import { mapActions, mapGetters } from 'vuex'
 
 export default {
   data () {
     return {
-      email: '',
-      password: ''
+      signInForm: {
+        email: '',
+        password: ''
+      },
+      rules: {
+        email: [
+          // I dont want to be maximum accurate for email regexp
+          { required: true, pattern: /^\S+@\S+\.\S+$/, message: 'Enter correct email', trigger: 'blur' }
+        ],
+        password: [
+          { required: true, message: 'Enter your password', trigger: 'blur' }
+        ]
+      }
     }
   },
   created () {
@@ -37,10 +46,16 @@ export default {
   },
   methods: {
     ...mapActions('user', ['unsetCurrentUser', 'setCurrentUser']),
-    signin () {
-      usersApi.signIn(this.email, this.password)
-        .then(response => this.signinSuccessful(response))
-        .catch(error => this.signinFailed(error))
+    validateAndSignIn (formName) {
+      this.$refs.signInForm.validate((valid) => {
+        if (valid) {
+          usersApi.signIn(this.signInForm.email, this.signInForm.password)
+            .then(response => this.signinSuccessful(response))
+            .catch(error => this.signinFailed(error))
+        } else {
+          return false
+        }
+      })
     },
     signinSuccessful (response) {
       if (!response.data.csrf) {
