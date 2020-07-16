@@ -29,22 +29,22 @@ module ExceptionHandler
   end
 
   def unauthorized(message = "Unauthorized")
-    json_response({errors: message}, :unauthorized)
+    json_response({error: message}, :unauthorized)
   end
 
   def record_invalid(message = "Record invalid")
-    json_response({errors: message}, :unprocessable_entity)
+    json_response({error: message}, :unprocessable_entity)
   end
 
   def not_found(message = "Not found")
-    json_response({errors: message}, :not_found)
+    json_response({error: message}, :not_found)
   end
 
   def bad_request(message = "Bad request")
-    json_response({errors: message}, :bad_request)
+    json_response({error: message}, :bad_request)
   end
 
   # def forbidden(message = "Forbidden")
-  #   json_response({errors: message}, :forbidden)
+  #   json_response({error: message}, :forbidden)
   # end
 end

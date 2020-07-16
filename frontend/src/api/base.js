@@ -1,4 +1,3 @@
-// import { securedAxiosInstance, plainAxiosInstance } from '@lib/apiInstance'
 import { plainAxiosInstance } from '@lib/apiInstance'
 
 export default {

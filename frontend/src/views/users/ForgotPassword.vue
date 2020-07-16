@@ -2,37 +2,47 @@
   .auth-card
     el-card
       h2.mb-1em Forgot password
-      el-form(ref="form" label-width="6em" @submit.native.prevent="submit")
+      el-form(label-width="6em" :model="forgotPasswordForm" ref="forgotPasswordForm" :rules="rules")
         el-form-item(prop="email" label="Email")
-          el-input(v-model="email" placeholder="Enter your email" clearable)
+          el-input(v-model="forgotPasswordForm.email" placeholder="Enter your email" clearable)
         el-form-item(label-width="0")
-          el-button(type="primary" native-type="submit" block) Reset Password
+          el-button(type="primary" @click="validateAndSetResetPasswordToken" block) Reset Password
       router-link(to="/") Sign In
       router-link(to="/signup" class="display-block mt-1em") Sign Up
 </template>
 
 <script>
+import usersApi from '@api/users'
+import messageToast from '@lib/messageToast'
+
 export default {
   data () {
     return {
-      email: '',
-      error: '',
-      notice: ''
+      forgotPasswordForm: {
+        email: ''
+      },
+      rules: {
+        email: [
+          // I dont want to be maximum accurate for email regexp
+          { required: true, pattern: /^\S+@\S+\.\S+$/, message: 'Enter correct email', trigger: 'blur' }
+        ]
+      }
     }
   },
   methods: {
-    submit () {
-      this.$http.plain.post('/api/users/password_resets', { email: this.email })
-        .then(() => this.submitSuccessful())
+    validateAndSetResetPasswordToken () {
+      usersApi.setResetPasswordToken(this.forgotPasswordForm.email)
+        .then((response) => this.submitSuccessful(response))
         .catch(error => this.submitFailed(error))
     },
-    submitSuccessful () {
-      this.notice = 'Email with password reset instructions had been sent.'
-      this.error = ''
-      this.email = ''
+    submitSuccessful (response) {
+      messageToast.showSuccess(response.data)
+      this.forgotPasswordForm.email = ''
+      this.$router.replace('/')
     },
     submitFailed (error) {
-      this.error = (error.response && error.response.data && error.response.data.error) || ''
+      const errorMessage = (error.response && error.response.data && error.response.data.error) || 'Something went wrong'
+      messageToast.showError(errorMessage)
     }
   }
 }

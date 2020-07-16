@@ -8,7 +8,7 @@
         el-form-item(prop="password" label="Password")
           el-input(v-model="signInForm.password" placeholder="Enter your password" show-password autocomplete="off")
         el-form-item(label-width="0")
-          el-button(type="primary" block @click="validateAndSignIn('signInForm')") Login
+          el-button(type="primary" block @click="validateAndSignIn") Login
       router-link(to="/forgot_password") Forgot Password?
       router-link(to="/signup" class="display-block mt-1em") Sign Up
 </template>
@@ -46,14 +46,12 @@ export default {
   },
   methods: {
     ...mapActions('user', ['unsetCurrentUser', 'setCurrentUser']),
-    validateAndSignIn (formName) {
+    validateAndSignIn () {
       this.$refs.signInForm.validate((valid) => {
         if (valid) {
           usersApi.signIn(this.signInForm.email, this.signInForm.password)
             .then(response => this.signinSuccessful(response))
             .catch(error => this.signinFailed(error))
-        } else {
-          return false
         }
       })
     },
@@ -69,7 +67,7 @@ export default {
         .catch(error => this.signinFailed(error))
     },
     signinFailed (error) {
-      const errorMessage = error.response && error.response.data && error.response.data.error
+      const errorMessage = (error.response && error.response.data && error.response.data.error) || 'Something went wrong'
       this.unsetCurrentUser({ errorMessage: errorMessage })
     },
     redirectToDashboardIfSignedIn () {

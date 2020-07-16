@@ -15,7 +15,7 @@ RSpec.describe "Not found", type: :request do
     end
 
     it "returns a validation failure message" do
-      expect(json["errors"]).to eq "Not found"
+      expect(json["error"]).to eq "Not found"
     end
   end
 end

@@ -31,7 +31,7 @@ RSpec.describe Users::SignupController, type: :controller do
         subject
 
         expect(response).not_to be_successful
-        expect(json.keys).to eq ["errors"]
+        expect(json.keys).to eq ["error"]
       end
 
       it "doesnt create a new user" do

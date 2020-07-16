@@ -3,7 +3,7 @@
       template(v-if="this.isAuthorized")
         .dock-right
           el-submenu(index='/about_user')
-            template(slot="title") {{ this.$store.state.user.currentUser.email }}
+            template(slot="title") {{ this.getEmail }}
             el-menu-item(@click="LogoutUser") Logout
       template(v-else)
         el-menu-item.dock-right(index='/') Login
@@ -25,14 +25,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('user', ['isAuthorized'])
+    ...mapGetters('user', ['isAuthorized', 'getEmail'])
   },
   mounted: function () {
     this.activeLink = this.$route.path
   },
   methods: {
     ...mapActions('user', ['unsetCurrentUser']),
-
     LogoutUser () {
       this.unsetCurrentUser({})
       this.$router.replace('/')

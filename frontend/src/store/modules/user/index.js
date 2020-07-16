@@ -8,6 +8,9 @@ const getters = {
   },
   getCsrfToken (state) {
     return state.csrf
+  },
+  getEmail (state) {
+    return state.currentUser.email
   }
 }
 

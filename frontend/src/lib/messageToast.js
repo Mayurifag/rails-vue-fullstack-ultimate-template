@@ -7,7 +7,7 @@ export default {
   showMessage (message) {
     Vue.prototype.$message({
       showClose: true,
-      duration: 1000,
+      // duration: 2000,
       message
     })
   },
@@ -16,7 +16,7 @@ export default {
     Vue.prototype.$message({
       showClose: true,
       type: 'success',
-      duration: 500,
+      // duration: 1000,
       message
     })
   },
