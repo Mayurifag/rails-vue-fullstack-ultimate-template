@@ -16,7 +16,7 @@ module Users
           JWTSessions.access_cookie,
           value: tokens[:access],
           httponly: true,
-          secure: Rails.env.production?
+          secure: JwtConfig.secure
         )
 
         json_response({csrf: tokens[:csrf]})
