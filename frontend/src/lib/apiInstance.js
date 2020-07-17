@@ -1,7 +1,9 @@
 import Vue from 'vue'
 import VueAxios from 'vue-axios'
 import axios from 'axios'
-import { store } from '@store'
+import userStore from '@store/modules/user'
+import usersApi from '@api/users'
+import baseApi from '@api/base'
 
 const API_URL = process.env.VUE_APP_API_HOST || ''
 
@@ -26,7 +28,7 @@ securedAxiosInstance.interceptors.request.use(config => {
   if (method !== 'OPTIONS' && method !== 'GET') {
     config.headers = {
       ...config.headers,
-      'X-CSRF-TOKEN': store.state.csrf
+      'X-CSRF-TOKEN': userStore.getCsrfToken
     }
   }
   return config
@@ -35,16 +37,14 @@ securedAxiosInstance.interceptors.request.use(config => {
 securedAxiosInstance.interceptors.response.use(null, error => {
   if (error.response && error.response.config && error.response.status === 401) {
     // In case 401 is caused by expired access cookie - we'll do refresh request
-    return plainAxiosInstance.post('/api/users/refresh', {}, { headers: { 'X-CSRF-TOKEN': store.state.csrf } })
+    return usersApi.refreshToken(userStore.getCsrfToken)
       .then(response => {
-        plainAxiosInstance.get('/api/users/whoami')
-          .then(result => store.commit('setCurrentUser', { currentUser: result.data, csrf: response.data.csrf }))
+        usersApi.whoami
+          .then(result => userStore.setCurrentUser({ currentUser: result.data, csrf: response.data.csrf }))
         // And after successful refresh - repeat the original request
-        const retryConfig = error.response.config
-        retryConfig.headers['X-CSRF-TOKEN'] = response.data.csrf
-        return plainAxiosInstance.request(retryConfig)
+        baseApi.requestWithCsrf(error.response.config, response.data.csrf)
       }).catch(error => {
-        store.commit('unsetCurrentUser')
+        userStore.unsetCurrentUser({})
         // redirect to signin in case refresh request fails
         location.replace('/')
         return Promise.reject(error)

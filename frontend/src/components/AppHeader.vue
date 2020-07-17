@@ -1,9 +1,9 @@
 <template lang="pug">
   el-menu(:router="true" :default-active="activeLink" mode="horizontal")
-      template(v-if="this.$store.state.signedIn")
+      template(v-if="this.isAuthorized")
         .dock-right
           el-submenu(index='/about_user')
-            template(slot="title") {{ this.$store.state.currentUser.email }}
+            template(slot="title") {{ this.getEmail }}
             el-menu-item(@click="LogoutUser") Logout
       template(v-else)
         el-menu-item.dock-right(index='/') Login
@@ -11,24 +11,29 @@
 </template>
 
 <script>
+import { mapActions, mapGetters } from 'vuex'
+
 export default {
   data () {
     return {
       activeLink: null
     }
   },
-
   watch: {
     $route (to, from) {
       this.activeLink = to.path
     }
   },
+  computed: {
+    ...mapGetters('user', ['isAuthorized', 'getEmail'])
+  },
   mounted: function () {
     this.activeLink = this.$route.path
   },
   methods: {
+    ...mapActions('user', ['unsetCurrentUser']),
     LogoutUser () {
-      this.$store.commit('unsetCurrentUser')
+      this.unsetCurrentUser({})
       this.$router.replace('/')
     }
   }

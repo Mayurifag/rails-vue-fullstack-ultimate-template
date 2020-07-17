@@ -15,8 +15,8 @@ module Users
         response.set_cookie(
           JWTSessions.access_cookie,
           value: tokens[:access],
-          httponly: true, secure:
-          Rails.env.production?
+          httponly: true,
+          secure: JwtConfig.secure
         )
 
         render json: {csrf: tokens[:csrf]}
@@ -33,8 +33,11 @@ module Users
 
     private
 
+    KEYS = %i[email password].freeze
+    private_constant :KEYS
+
     def user_params
-      params.permit(:email, :password)
+      params.tap { |p| p.require(KEYS) }.permit(*KEYS)
     end
   end
 end
