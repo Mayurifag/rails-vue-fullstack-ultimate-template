@@ -14,7 +14,7 @@ class UrlConfig < ApplicationConfig
   required :port
 
   def base_url
-    host + port
+    host + ":" + port
   end
 
   def base_url_with_scheme

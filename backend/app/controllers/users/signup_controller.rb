@@ -27,8 +27,11 @@ module Users
 
     private
 
+    KEYS = %i[email password password_confirmation].freeze
+    private_constant :KEYS
+
     def user_params
-      params.permit(:email, :password, :password_confirmation)
+      params.tap { |p| p.require(KEYS) }.permit(*KEYS)
     end
   end
 end
