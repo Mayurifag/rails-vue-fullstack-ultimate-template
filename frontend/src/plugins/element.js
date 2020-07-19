@@ -14,3 +14,5 @@ locale.use(lang)
 
 // TODO: element ui only needed things from package
 Vue.use(ElementUI)
+
+// TODO: element ui with i18n
