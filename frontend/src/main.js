@@ -1,10 +1,10 @@
 import Vue from 'vue'
 import App from './App'
-import '@lib/registerServiceWorker'
+import '@plugins/registerServiceWorker'
 import router from '@router'
 import { store } from '@store'
 import '@plugins/element.js'
-import i18n from '@lib/i18n'
+import i18n from '@plugins/i18n'
 
 Vue.config.productionTip = false
 

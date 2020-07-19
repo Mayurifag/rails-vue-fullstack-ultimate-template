@@ -10,7 +10,7 @@
         el-form-item(prop="passwordConfirmation" required :label="$t('users.passwordConfirmation')")
           el-input(v-model="signUpForm.passwordConfirmation" :placeholder="$t('placeholders.users.confirmPassword')" show-password autocomplete="off")
         el-form-item(label-width="0")
-          el-button(type="primary" @click="validateAndSignUp" block) {{ $t('users.signUp') }}
+          el-button(type="primary" :disabled="signUpForm.email === ''" @click="validateAndSignUp" block) {{ $t('users.signUp') }}
       router-link(to="/forgot_password") {{ $t('users.forgotPassword?') }}
       router-link(to="/" class="display-block mt-1em") {{ $t('users.signIn') }}
 </template>
