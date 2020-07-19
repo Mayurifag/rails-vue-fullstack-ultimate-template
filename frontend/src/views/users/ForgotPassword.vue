@@ -1,14 +1,14 @@
 <template lang="pug">
   .auth-card
     el-card
-      h2.mb-1em Forgot password
+      h2.mb-1em {{ $t('users.resetPassword') }}
       el-form(label-width="6em" :model="forgotPasswordForm" ref="forgotPasswordForm" :rules="rules")
         el-form-item(prop="email" label="Email")
-          el-input(v-model="forgotPasswordForm.email" placeholder="Enter your email" clearable)
+          el-input(v-model="forgotPasswordForm.email" :placeholder="$t('placeholders.users.enterYourEmail')" clearable)
         el-form-item(label-width="0")
-          el-button(type="primary" @click="validateAndSetResetPasswordToken" block) Reset Password
-      router-link(to="/") Sign In
-      router-link(to="/signup" class="display-block mt-1em") Sign Up
+          el-button(type="primary" :disabled="forgotPasswordForm.email === ''" @click="validateAndSetResetPasswordToken" block) {{ $t('users.resetPassword') }}
+      router-link(to="/") {{ $t('users.signIn') }}
+      router-link(to="/signup" class="display-block mt-1em") {{ $t('users.signUp') }}
 </template>
 
 <script>

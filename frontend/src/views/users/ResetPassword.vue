@@ -1,16 +1,16 @@
 <template lang="pug">
   .auth-card
     el-card
-      h2.mb-1em Reset password
-      el-form(label-width="8em" :model="resetPasswordForm" ref="resetPasswordForm" :rules="rules")
-        el-form-item(prop="password" required label="Password")
-          el-input(v-model="resetPasswordForm.password" placeholder="Enter your password" show-password autocomplete="off")
-        el-form-item(prop="passwordConfirmation" required label="Pass confirm")
-          el-input(v-model="resetPasswordForm.passwordConfirmation" placeholder="Confirm your password" show-password autocomplete="off")
+      h2.mb-1em {{ $t('users.resetPassword') }}
+      el-form(label-position="right" :model="resetPasswordForm" ref="resetPasswordForm" :rules="rules")
+        el-form-item(prop="password" required :label="$t('users.password')")
+          el-input(v-model="resetPasswordForm.password" :placeholder="$t('validations.users.enterYourPassword')" show-password autocomplete="off")
+        el-form-item(prop="passwordConfirmation" required :label="$t('users.passwordConfirmation')")
+          el-input(v-model="resetPasswordForm.passwordConfirmation" :placeholder="$t('placeholders.users.confirmPassword')" show-password autocomplete="off")
         el-form-item(label-width="0")
-          el-button(type="primary" @click="validateAndReset" block) Reset Password
-      router-link(to="/") Sign In
-      router-link(to="/signup" class="display-block mt-1em") Sign Up
+          el-button(type="primary" :disabled="resetPasswordForm.password === ''" @click="validateAndReset" block) {{ $t('users.resetPassword') }}
+      router-link(to="/") {{ $t('users.signIn') }}
+      router-link(to="/signup" class="display-block mt-1em") {{ $t('users.signUp') }}
 </template>
 
 <script>

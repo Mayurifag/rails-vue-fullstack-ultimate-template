@@ -1,13 +1,24 @@
 {
-  "placeholders.users.confirmPassword": "Подтвердите свой пароль",
-  "placeholders.users.enterYourEmail": "Введите ваш Email",
-  "users.forgotPassword?": "Забыли пароль?",
-  "users.login": "Войти",
-  "users.logout": "Выйти",
-  "users.password": "Пароль",
-  "users.passwordConfirmation": "Подтверждение пароля",
-  "users.signIn": "Вход",
-  "users.signUp": "Регистрация",
-  "validations.users.enterCorrectEmail": "Введите правильный email",
-  "validations.users.enterYourPassword": "Введите ваш пароль"
+	"placeholders": {
+		"users": {
+			"confirmPassword": "Подтвердите свой пароль",
+			"enterYourEmail": "Введите ваш Email"
+		}
+	},
+	"users": {
+		"forgotPassword?": "Забыли пароль?",
+		"login": "Войти",
+		"logout": "Выйти",
+		"password": "Пароль",
+		"passwordConfirmation": "Подтверждение пароля",
+		"signIn": "Вход",
+		"signUp": "Регистрация",
+    "resetPassword": "Восстановление пароля"
+	},
+	"validations": {
+		"users": {
+			"enterCorrectEmail": "Введите правильный email",
+			"enterYourPassword": "Введите ваш пароль"
+		}
+	}
 }

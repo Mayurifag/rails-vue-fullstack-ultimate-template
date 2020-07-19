@@ -8,7 +8,7 @@
         el-form-item(prop="password" :label="$t('users.password')")
           el-input(v-model="signInForm.password" :placeholder="$t('validations.users.enterYourPassword')" show-password autocomplete="off")
         el-form-item(label-width="0")
-          el-button(type="primary" block @click="validateAndSignIn") {{ $t('users.login') }}
+          el-button(type="primary" :disabled="signInForm.email === ''" block @click="validateAndSignIn") {{ $t('users.login') }}
       router-link(to="/forgot_password") {{ $t('users.forgotPassword?') }}
       router-link(to="/signup" class="display-block mt-1em") {{ $t('users.signUp') }}
 </template>

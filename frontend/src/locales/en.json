@@ -1,13 +1,24 @@
 {
-  "placeholders.users.confirmPassword": "Confirm your password",
-  "placeholders.users.enterYourEmail": "Enter your email",
-  "users.forgotPassword?": "Forgot password?",
-  "users.login": "Login",
-  "users.logout": "Logout",
-  "users.password": "Password",
-  "users.passwordConfirmation": "Pass confirm",
-  "users.signIn": "Sign in",
-  "users.signUp": "Sign up",
-  "validations.users.enterCorrectEmail": "Enter correct email",
-  "validations.users.enterYourPassword": "Enter your password"
+	"placeholders": {
+		"users": {
+			"confirmPassword": "Confirm your password",
+			"enterYourEmail": "Enter your email"
+		}
+	},
+	"users": {
+		"forgotPassword?": "Forgot password?",
+		"login": "Login",
+		"logout": "Logout",
+		"password": "Password",
+		"passwordConfirmation": "Password confirmation",
+		"signIn": "Sign in",
+    "signUp": "Sign up",
+    "resetPassword": "Reset password"
+	},
+	"validations": {
+		"users": {
+			"enterCorrectEmail": "Enter correct email",
+			"enterYourPassword": "Enter your password"
+		}
+	}
 }
