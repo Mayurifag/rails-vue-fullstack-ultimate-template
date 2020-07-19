@@ -1,16 +1,16 @@
 <template lang="pug">
   .auth-card
     el-card
-      h2.mb-1em Sign in
+      h2.mb-1em {{ $t('users.signIn') }}
       el-form(:model="signInForm" ref="signInForm" :rules="rules" label-width="6em")
         el-form-item(prop="email" label="Email")
-          el-input(v-model="signInForm.email" placeholder="Enter your email" clearable)
-        el-form-item(prop="password" label="Password")
-          el-input(v-model="signInForm.password" placeholder="Enter your password" show-password autocomplete="off")
+          el-input(v-model="signInForm.email" :placeholder="$t('placeholders.users.enterYourEmail')" clearable)
+        el-form-item(prop="password" :label="$t('users.password')")
+          el-input(v-model="signInForm.password" :placeholder="$t('validations.users.enterYourPassword')" show-password autocomplete="off")
         el-form-item(label-width="0")
-          el-button(type="primary" block @click="validateAndSignIn") Login
-      router-link(to="/forgot_password") Forgot Password?
-      router-link(to="/signup" class="display-block mt-1em") Sign Up
+          el-button(type="primary" block @click="validateAndSignIn") {{ $t('users.login') }}
+      router-link(to="/forgot_password") {{ $t('users.forgotPassword?') }}
+      router-link(to="/signup" class="display-block mt-1em") {{ $t('users.signUp') }}
 </template>
 
 <script>
@@ -27,10 +27,10 @@ export default {
       rules: {
         email: [
           // I dont want to be maximum accurate for email regexp
-          { required: true, pattern: /^\S+@\S+\.\S+$/, message: 'Enter correct email', trigger: 'blur' }
+          { required: true, pattern: /^\S+@\S+\.\S+$/, message: this.$t('validations.users.enterCorrectEmail'), trigger: 'blur' }
         ],
         password: [
-          { required: true, message: 'Enter your password', trigger: 'blur' }
+          { required: true, message: this.$t('validations.users.enterYourPassword'), trigger: 'blur' }
         ]
       }
     }

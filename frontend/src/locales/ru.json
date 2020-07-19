@@ -1,0 +1,13 @@
+{
+  "placeholders.users.confirmPassword": "Подтвердите свой пароль",
+  "placeholders.users.enterYourEmail": "Введите ваш Email",
+  "users.forgotPassword?": "Забыли пароль?",
+  "users.login": "Войти",
+  "users.logout": "Выйти",
+  "users.password": "Пароль",
+  "users.passwordConfirmation": "Подтверждение пароля",
+  "users.signIn": "Вход",
+  "users.signUp": "Регистрация",
+  "validations.users.enterCorrectEmail": "Введите правильный email",
+  "validations.users.enterYourPassword": "Введите ваш пароль"
+}

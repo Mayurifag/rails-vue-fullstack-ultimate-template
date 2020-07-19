@@ -20,9 +20,11 @@ module.exports = {
     }
   },
   pluginOptions: {
-    webpackBundleAnalyzer: {
-      // openAnalyzer: true,
-      analyzerPort: 8889
+    i18n: {
+      locale: 'ru',
+      fallbackLocale: 'en',
+      localeDir: 'locales',
+      enableInSFC: false
     }
   }
 }

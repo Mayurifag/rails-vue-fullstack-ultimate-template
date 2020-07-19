@@ -1,18 +1,18 @@
 <template lang="pug">
   .auth-card
     el-card
-      h2.mb-1em Sign up
-      el-form(label-width="8em" :model="signUpForm" ref="signUpForm" :rules="rules")
+      h2.mb-1em {{ $t('users.signUp') }}
+      el-form(:model="signUpForm" ref="signUpForm" :rules="rules" label-position="right")
         el-form-item(prop="email" label="Email")
-          el-input(v-model="signUpForm.email" placeholder="Enter your email" clearable)
-        el-form-item(prop="password" required label="Password")
-          el-input(v-model="signUpForm.password" placeholder="Enter your password" show-password autocomplete="off")
-        el-form-item(prop="passwordConfirmation" required label="Pass confirm")
-          el-input(v-model="signUpForm.passwordConfirmation" placeholder="Confirm your password" show-password autocomplete="off")
+          el-input(v-model="signUpForm.email" :placeholder="$t('placeholders.users.enterYourEmail')" clearable)
+        el-form-item(prop="password" required :label="$t('users.password')")
+          el-input(v-model="signUpForm.password" :placeholder="$t('validations.users.enterYourPassword')" show-password autocomplete="off")
+        el-form-item(prop="passwordConfirmation" required :label="$t('users.passwordConfirmation')")
+          el-input(v-model="signUpForm.passwordConfirmation" :placeholder="$t('placeholders.users.confirmPassword')" show-password autocomplete="off")
         el-form-item(label-width="0")
-          el-button(type="primary" @click="validateAndSignUp" block) Sign up
-      router-link(to="/forgot_password") Forgot Password?
-      router-link(to="/" class="display-block mt-1em") Sign In
+          el-button(type="primary" @click="validateAndSignUp" block) {{ $t('users.signUp') }}
+      router-link(to="/forgot_password") {{ $t('users.forgotPassword?') }}
+      router-link(to="/" class="display-block mt-1em") {{ $t('users.signIn') }}
 </template>
 
 <script>
