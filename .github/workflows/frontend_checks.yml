@@ -1,6 +1,5 @@
 ---
-
-name: Lint frontend files
+name: Lint frontend
 
 on:
   push:

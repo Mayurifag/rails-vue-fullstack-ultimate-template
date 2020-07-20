@@ -1,6 +1,5 @@
 ---
-
-name: Build
+name: Test Ruby
 
 on:
   push:

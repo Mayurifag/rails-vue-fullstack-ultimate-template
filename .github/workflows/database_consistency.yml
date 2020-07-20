@@ -1,6 +1,5 @@
 ---
-
-name: Build
+name: Lint Ruby
 
 on:
   push:
