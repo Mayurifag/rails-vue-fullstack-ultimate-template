@@ -102,5 +102,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-@import '@assets/shared_auth_styles'
+@import '@styles/shared_auth_styles'
 </style>
