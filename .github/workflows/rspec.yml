@@ -1,0 +1,64 @@
+---
+
+name: Build
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  rspec:
+    runs-on: ubuntu-latest
+    services:
+      postgres:
+        image: postgres:11.6-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
+        ports:
+          - 5432/tcp
+        options: >-
+          --health-cmd pg_isready
+          --health-interval 10s
+          --health-timeout 5s
+          --health-retries 5
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Set up Ruby 2.7
+        uses: actions/setup-ruby@v1
+        with:
+          ruby-version: 2.7.x
+
+      - name: Start Redis v6
+        uses: superchargejs/redis-github-action@1.1.0
+        with:
+          redis-version: 6
+
+      - name: Cache gems
+        uses: actions/cache@v1
+        with:
+          path: backend/vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+
+      - name: Build DB and run Rspec
+        working-directory: ./backend
+        env:
+          PGHOST: localhost
+          PGUSER: postgres
+          POSTGRES_PASSWORD: postgres
+          PGPORT: ${{ job.services.postgres.ports[5432] }}
+          RAILS_ENV: test
+        run: |
+          sudo apt-get install libpq-dev
+          gem install bundler
+          bundle config path vendor/bundle
+          bundle install --without development production --jobs 4 --retry 3
+          bundle exec rails db:setup
+          bundle exec rspec

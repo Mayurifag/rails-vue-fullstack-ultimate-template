@@ -1,0 +1,51 @@
+---
+
+name: Lint other files
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+
+jobs:
+  editorconfig-checker:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Run Editorconfig
+        run: |
+          docker run --rm --volume=$PWD:/check mstruebing/editorconfig-checker
+#######################################
+  yamllint:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Set up Python 3.x
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.x
+      - name: Install dependencies
+        run: |
+          python -m pip install --upgrade pip
+      - name: Lint with yamllint
+        run: |
+          pip install yamllint
+          yamllint --strict .
+#######################################
+  cypress:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Run dockerized Cypress
+        run: |
+          make cypress
