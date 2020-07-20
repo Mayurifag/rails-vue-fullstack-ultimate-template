@@ -29,7 +29,7 @@ jobs:
 
       - name: Run dotenv-linter
         run: |
-          docker run --rm -v `pwd`/frontend:/app -w /app dotenvlinter/dotenv-linter
+          docker run --rm -v `pwd`/frontend:/a -w /a dotenvlinter/dotenv-linter
 #######################################
   yamllint:
     runs-on: ubuntu-latest
