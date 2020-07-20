@@ -28,7 +28,7 @@ jobs:
       - name: Run Markdown linter
         run: |
           gem install mdl
-          mdl *.md
+          mdl README.md
   forspell:
     runs-on: ubuntu-latest
     steps:
@@ -64,4 +64,4 @@ jobs:
         run: |
           export PATH=$PATH:$(go env GOPATH)/bin
           go get -u github.com/raviqqe/liche
-          liche README.md
+          liche -x localhost README.md
