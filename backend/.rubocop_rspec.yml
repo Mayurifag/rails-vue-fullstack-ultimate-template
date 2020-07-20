@@ -1,3 +1,4 @@
+---
 # https://gist.github.com/palkan/623c0816b05ed246bfe0cb406050990a
 require:
   - rubocop-rspec
