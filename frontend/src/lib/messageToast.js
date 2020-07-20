@@ -1,13 +1,9 @@
 import Vue from 'vue'
-// import { Message } from 'element-ui'
-
-// Vue.use(Message)
 
 export default {
   showMessage (message) {
     Vue.prototype.$message({
       showClose: true,
-      // duration: 2000,
       message
     })
   },
@@ -16,7 +12,6 @@ export default {
     Vue.prototype.$message({
       showClose: true,
       type: 'success',
-      // duration: 1000,
       message
     })
   },
