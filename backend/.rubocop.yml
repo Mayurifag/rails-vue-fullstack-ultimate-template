@@ -1,11 +1,22 @@
 ---
 # Insert new cops alphabetically
 
+# We want Exclude directives from different
+# config files to get merged, not overwritten
+inherit_mode:
+  merge:
+    - Exclude
+
 require:
+  - rubocop-performance
   - standard/cop/semantic_blocks
 
 inherit_gem:
   standard: config/base.yml
+
+inherit_from:
+  - .rubocop_rails.yml
+  - .rubocop_rspec.yml
 
 AllCops:
   Exclude:

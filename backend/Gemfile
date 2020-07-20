@@ -47,7 +47,9 @@ group :development do
   gem "listen"
   gem "ordinare", require: false
   gem "ruby_audit", require: false
-  gem "standard"
+  gem "rubocop-rails", require: false
+  gem "rubocop-rspec", require: false
+  gem "standard", ">= 0.4.7"
 end
 
 group :test do

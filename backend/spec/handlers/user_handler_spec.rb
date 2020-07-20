@@ -5,6 +5,7 @@ RSpec.describe UserHandler, type: :handler do
 
   describe "#generate_password_token!" do
     subject { described_class.new(user).generate_password_token! }
+
     let(:reset_password_token) { nil }
 
     it "has to change reset_password_token from nil to something" do
@@ -15,6 +16,7 @@ RSpec.describe UserHandler, type: :handler do
 
   describe "#clear_password_token!" do
     subject { described_class.new(user).clear_password_token! }
+
     let(:reset_password_token) { "something_url_random" }
 
     it "has to change reset_password_token from something to nil" do

@@ -23,7 +23,7 @@ RSpec.describe Users::SigninController, type: :controller do
 
       it "returns unauthorized for invalid params" do
         subject
-        expect(response).to have_http_status(401)
+        expect(response).to have_http_status(:unauthorized)
       end
     end
   end
@@ -35,7 +35,7 @@ RSpec.describe Users::SigninController, type: :controller do
       it "returns unauthorized http status" do
         subject
 
-        expect(response).to have_http_status(401)
+        expect(response).to have_http_status(:unauthorized)
       end
     end
 
@@ -53,7 +53,7 @@ RSpec.describe Users::SigninController, type: :controller do
 
         subject
 
-        expect(response).to have_http_status(200)
+        expect(response).to have_http_status(:ok)
       end
     end
   end
