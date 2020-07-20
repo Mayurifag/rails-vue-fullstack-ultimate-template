@@ -6,7 +6,7 @@ describe("Authentication pages", () => {
 
   it('loads /forgot_password page', () => {
     cy.visit('/forgot_password')
-    cy.contains('Forgot password')
+    cy.contains('Reset password')
   })
 
   it('loads /signup page', () => {
