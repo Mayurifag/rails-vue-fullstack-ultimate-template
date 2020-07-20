@@ -20,6 +20,17 @@ jobs:
         run: |
           docker run --rm --volume=$PWD:/check mstruebing/editorconfig-checker
 #######################################
+  dotenv-linter:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v1
+        with:
+          fetch-depth: 1
+
+      - name: Run dotenv-linter
+        run: |
+          docker run --rm -v `pwd`/frontend:/app -w /app dotenvlinter/dotenv-linter
+#######################################
   yamllint:
     runs-on: ubuntu-latest
     steps:
