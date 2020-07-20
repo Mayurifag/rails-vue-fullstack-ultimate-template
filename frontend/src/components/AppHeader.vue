@@ -1,14 +1,14 @@
 <template lang="pug">
   el-menu(:router="true" :default-active="activeLink" mode="horizontal")
-    SelectLocale
-    template(v-if="this.isAuthorized")
-      .dock-right
+    .dock-right
+      SelectLocale
+      template(v-if="this.isAuthorized")
         el-submenu(index='/about_user')
           template(slot="title") {{ this.getEmail }}
           el-menu-item(@click="LogoutUser") {{ $t('users.logout') }}
-    template(v-else)
-      el-menu-item.dock-right(index='/') {{ $t('users.signIn') }}
-      el-menu-item.dock-right(index='/signup') {{ $t('users.signUp') }}
+      template(v-else)
+        el-menu-item(index='/') {{ $t('users.signIn') }}
+        el-menu-item(index='/signup') {{ $t('users.signUp') }}
 </template>
 
 <script>
@@ -29,7 +29,7 @@ export default {
   computed: {
     ...mapGetters('user', ['isAuthorized', 'getEmail'])
   },
-  mounted: function () {
+  mounted () {
     this.activeLink = this.$route.path
   },
   methods: {
@@ -47,6 +47,10 @@ export default {
 
 <style lang="scss" scoped>
 .dock-right {
+  display: inline-flex;
+  align-items: center;
+  flex-wrap: nowrap;
+  justify-content: flex-end;
   float: right !important;
 }
 </style>

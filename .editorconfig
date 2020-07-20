@@ -23,5 +23,5 @@ indent_size = 4
 [{Gemfile.lock,**.sql}]
 indent_size = unset
 
-[{**.yml.enc}]
+[{**.yml.enc,**.svg}]
 insert_final_newline = unset

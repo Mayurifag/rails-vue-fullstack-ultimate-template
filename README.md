@@ -43,3 +43,6 @@ There are simple end-to-end tests, you may launch them with `make cypress`.
 [dip-link]: https://github.com/bibendi/dip
 [frontend-localhost]: http://localhost:3333
 [backend-localhost]: http://localhost:8888
+
+
+<!-- TODO: https://web.dev/sign-in-form-best-practices/ -->
