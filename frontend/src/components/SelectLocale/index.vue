@@ -32,7 +32,7 @@ export default {
   margin-right: 12px;
 
   &:hover {
-    cursor: pointer
+    cursor: pointer;
   }
 }
 </style>

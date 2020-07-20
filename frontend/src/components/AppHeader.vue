@@ -48,8 +48,8 @@ export default {
 <style lang="scss" scoped>
 .dock-right {
   display: inline-flex;
-  align-items: center;
   flex-wrap: nowrap;
+  align-items: center;
   justify-content: flex-end;
   float: right !important;
 }
