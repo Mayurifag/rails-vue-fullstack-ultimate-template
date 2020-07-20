@@ -5,19 +5,21 @@
 # Description
 
 The best template for Rails/Vue.js stack you may find somewhere, but I am just
-too lazy to write about all the features right now (uuuuh)
-
+too lazy to write about all the features right now.
 
 ## Prerequisites
+
 To start development server you need latest stable versions of `git`, `docker`,
 `docker-compose` and [dip][dip-link] installed.
 
 ## How to start
 
-Dont use it
+Do not use it
 
-## Entrypoints
+## Entry points
+
 * Frontend: [localhost:3333][frontend-localhost]
+
 * Backend: [localhost:8888][backend-localhost]
 
 # Tests
@@ -25,7 +27,7 @@ Dont use it
 ## Rspec
 
 Just use `dip rspec` to launch `rspec` and get the spec coverage from
-simplecov.
+`simplecov`.
 
 ## Parallel tests for RSpec
 
@@ -43,6 +45,5 @@ There are simple end-to-end tests, you may launch them with `make cypress`.
 [dip-link]: https://github.com/bibendi/dip
 [frontend-localhost]: http://localhost:3333
 [backend-localhost]: http://localhost:8888
-
 
 <!-- TODO: https://web.dev/sign-in-form-best-practices/ -->
