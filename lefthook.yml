@@ -17,19 +17,11 @@ pre-push:
   commands:
     rspec:
       runner: dip rspec --fail-fast
-    eslint:
-      runner: dip yarn lint
     stylelint:
       runnter: dip yarn css:lint
-    rubocop:
-      runner: dip bundle exec rubocop --parallel
     editorconfig:
       runner: |
         docker run --rm --volume=$PWD:/check mstruebing/editorconfig-checker
-    yamllint:
-      glob: "*.{yaml,yml}"
-      runner: yamllint --strict .
-
 
 commands: &commands
   bundle-install:
