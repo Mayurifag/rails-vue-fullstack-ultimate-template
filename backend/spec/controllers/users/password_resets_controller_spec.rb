@@ -28,25 +28,26 @@ RSpec.describe Users::PasswordResetsController, type: :controller do
       UserHandler.new(user).generate_password_token!
       user.update({reset_password_token_expires_at: 2.days.ago})
       get :show, params: {token: user.reset_password_token}
-      expect(response).to have_http_status(401)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it "returns unauthorized for invalid expirations" do
       UserHandler.new(user).generate_password_token!
       user.update({reset_password_token_expires_at: nil})
       get :show, params: {token: user.reset_password_token}
-      expect(response).to have_http_status(401)
+      expect(response).to have_http_status(:unauthorized)
     end
 
     it "returns unauthorized for invalid params" do
       UserHandler.new(user).generate_password_token!
       get :show, params: {token: 1}
-      expect(response).to have_http_status(401)
+      expect(response).to have_http_status(:unauthorized)
     end
   end
 
   describe "PATCH #update" do
     subject { patch :update, params: params }
+
     let(:new_password) { "new_password" }
 
     context "with valid params" do
@@ -77,7 +78,7 @@ RSpec.describe Users::PasswordResetsController, type: :controller do
       it "returns 422" do
         UserHandler.new(user).generate_password_token!
         subject
-        expect(response).to have_http_status(422)
+        expect(response).to have_http_status(:unprocessable_entity)
       end
     end
 
@@ -87,7 +88,7 @@ RSpec.describe Users::PasswordResetsController, type: :controller do
       it "returns 400 if param is missing" do
         UserHandler.new(user).generate_password_token!
         subject
-        expect(response).to have_http_status(400)
+        expect(response).to have_http_status(:bad_request)
       end
     end
   end

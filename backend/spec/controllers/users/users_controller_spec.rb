@@ -1,10 +1,11 @@
 require "rails_helper"
 
 RSpec.describe Users::UsersController, type: :controller do
-  describe "GET #whoami" do
-    let(:user) { create(:user) }
-    before { sign_in_as(user) }
+  let(:user) { create(:user) }
 
+  before { sign_in_as(user) }
+
+  describe "GET #whoami" do
     subject { get :whoami }
 
     it "returns a success response" do

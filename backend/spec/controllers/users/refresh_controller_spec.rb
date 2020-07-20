@@ -51,7 +51,7 @@ RSpec.describe Users::RefreshController, type: :controller do
 
         subject
 
-        expect(response).to have_http_status(401)
+        expect(response).to have_http_status(:unauthorized)
       end
     end
   end

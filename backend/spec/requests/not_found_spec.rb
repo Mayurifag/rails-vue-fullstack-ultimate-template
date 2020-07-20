@@ -11,7 +11,7 @@ RSpec.describe "Not found", type: :request do
     subject! { get "/asdasdasasasddasasdasdasd" }
 
     it "returns a validation failure message" do
-      expect(response).to have_http_status(404)
+      expect(response).to have_http_status(:not_found)
     end
 
     it "returns a validation failure message" do
