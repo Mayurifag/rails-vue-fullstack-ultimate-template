@@ -3,7 +3,10 @@ require "rails_helper"
 RSpec.describe Users::SignupController, type: :controller do
   describe "POST #create" do
     subject { post :create, params: user_params }
-    let(:user_params) { {email: email, password: password, password_confirmation: password_confirmation} }
+
+    let(:user_params) do
+      {email: email, password: password, password_confirmation: password_confirmation}
+    end
     let(:email) { "TEst@email.com" }
     let(:password) { "password" }
     let(:password_confirmation) { password }
