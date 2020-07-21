@@ -1,4 +1,5 @@
 class User < ApplicationRecord
+  # from bcrypt - callbacks (eeeh) to encrypt password
   has_secure_password
 
   enum role: {regular: "regular", admin: "admin"}
