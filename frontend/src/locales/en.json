@@ -13,7 +13,8 @@
 		"passwordConfirmation": "Password confirmation",
 		"signIn": "Sign in",
     "signUp": "Sign up",
-    "resetPassword": "Reset password"
+    "resetPassword": "Reset password",
+    "aboutUser": "Your email: %{email}. Your role — %{role}! Congratulations!"
 	},
 	"validations": {
 		"users": {
