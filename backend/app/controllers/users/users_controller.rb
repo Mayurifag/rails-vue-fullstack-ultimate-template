@@ -1,7 +1,7 @@
 module Users
-  class UsersController < ApplicationController
+  class UsersController < BaseUsersController
     def whoami
-      json_response(current_user.as_json(only: [:id, :email, :role]))
+      json_response(Users::WhoamiBlueprint.render_as_json(current_user))
     end
   end
 end

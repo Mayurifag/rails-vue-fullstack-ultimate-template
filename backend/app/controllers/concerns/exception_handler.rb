@@ -32,6 +32,10 @@ module ExceptionHandler
     json_response({error: message}, :unauthorized)
   end
 
+  def record_invalid_with_full_messages(object)
+    record_invalid(object.errors.full_messages.join(" "))
+  end
+
   def record_invalid(message = "Record invalid")
     json_response({error: message}, :unprocessable_entity)
   end

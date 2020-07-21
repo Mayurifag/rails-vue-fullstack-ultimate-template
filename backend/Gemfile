@@ -12,6 +12,7 @@ gem "awesome_rails_console",
   github: "xunker/awesome_rails_console",
   branch: "pry-0.13.0-compatibility"
 gem "bcrypt"
+gem "blueprinter"
 gem "bootsnap", require: false
 gem "fast_blank", platform: :mri
 gem "jwt_sessions"
@@ -23,6 +24,7 @@ gem "puma"
 gem "rack-attack"
 gem "rack-cors"
 gem "redis"
+gem "shallow_attributes"
 gem "strong_migrations"
 
 group :development, :test do

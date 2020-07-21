@@ -1,11 +1,11 @@
 module Users
-  class PasswordResetsController < ApplicationController
+  class PasswordResetsController < BaseUsersController
     before_action :set_user, only: [:show, :update]
     skip_before_action :authorize_access_request!, only: %i[create show update]
 
     def create
       user = User.find_by(email: params[:email])
-      if user
+      if user.present?
         UserHandler.new(user).generate_password_token!
         UserMailer.reset_password(user).deliver_now
       end
@@ -35,8 +35,7 @@ module Users
 
     def set_user
       @user = User.find_by(reset_password_token: params[:token])
-      raise ResetPasswordError unless @user&.reset_password_token_expires_at &&
-        @user.reset_password_token_expires_at > Time.current
+      raise ResetPasswordError unless @user&.is_able_to_reset_password?
     end
   end
 end
