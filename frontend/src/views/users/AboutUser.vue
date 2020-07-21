@@ -1,6 +1,5 @@
 <template lang="pug">
-  el-row(type="flex" justify="space-around")
-    | Your email is {{ user.email }} and you are {{ user.role }} user.
+  el-row(type="flex" justify="space-around") {{ $t('users.aboutUser', { email: user.email, role: user.role }) }}
 </template>
 
 <script>

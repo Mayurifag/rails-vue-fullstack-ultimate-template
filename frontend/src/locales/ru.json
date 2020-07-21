@@ -13,7 +13,8 @@
 		"passwordConfirmation": "Подтверждение пароля",
 		"signIn": "Вход",
 		"signUp": "Регистрация",
-    "resetPassword": "Восстановление пароля"
+    "resetPassword": "Восстановление пароля",
+    "aboutUser": "Ваш email: %{email}. Ваша роль — %{role}! Мои поздравления!"
 	},
 	"validations": {
 		"users": {
