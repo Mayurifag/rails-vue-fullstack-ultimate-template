@@ -26,23 +26,6 @@ jobs:
           gem install brakeman
           brakeman
 #######################################
-  fasterer:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v1
-        with:
-          fetch-depth: 1
-
-      - uses: actions/setup-ruby@v1
-        with:
-          ruby-version: 3.0.x
-
-      - name: fasterer
-        working-directory: ./backend
-        run: |
-          gem install fasterer
-          fasterer
-#######################################
   bundle-leak:
     runs-on: ubuntu-latest
     steps:
