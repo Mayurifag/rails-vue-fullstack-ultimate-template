@@ -8,15 +8,10 @@ inherit_mode:
     - Exclude
 
 require:
-  - rubocop-performance
-  - standard/cop/semantic_blocks
+  - standard/cop/block_single_line_braces
 
 inherit_gem:
   standard: config/base.yml
-
-inherit_from:
-  - .rubocop_rails.yml
-  - .rubocop_rspec.yml
 
 AllCops:
   Exclude:
@@ -26,3 +21,6 @@ AllCops:
 Layout/LineLength:
   Max: 100
   IgnoredPatterns: ['\A#']
+
+Standard/BlockSingleLineBraces:
+  Enabled: false

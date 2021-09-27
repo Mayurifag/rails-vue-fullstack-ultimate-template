@@ -101,8 +101,6 @@ GEM
     crack (0.4.5)
       rexml
     crass (1.0.6)
-    database_consistency (1.1.2)
-      activerecord (>= 3.2)
     debug_inspector (1.1.0)
     diff-lcs (1.4.4)
     docile (1.4.0)
@@ -321,7 +319,6 @@ DEPENDENCIES
   bullet
   bundler-audit
   byebug
-  database_consistency
   factory_bot_rails
   factory_trace
   fast_blank
@@ -354,7 +351,7 @@ DEPENDENCIES
   simplecov
   simplecov-console
   stackprof (>= 0.2.9)
-  standard (>= 0.4.7)
+  standard
   strong_migrations
   test-prof
   webmock

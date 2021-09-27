@@ -45,14 +45,13 @@ group :development do
   gem "brakeman", require: false
   gem "bullet"
   gem "bundler-audit", require: false
-  gem "database_consistency", require: false
   gem "letter_opener"
   gem "listen"
   gem "ordinare", require: false
   gem "ruby_audit", require: false
   gem "rubocop-rails", require: false
   gem "rubocop-rspec", require: false
-  gem "standard", ">= 0.4.7"
+  gem "standard"
 end
 
 group :test do
