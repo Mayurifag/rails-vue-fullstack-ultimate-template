@@ -256,7 +256,7 @@ GEM
       rubocop (>= 1.7.0, < 2.0)
     rubocop-rspec (2.5.0)
       rubocop (~> 1.19)
-    ruby-next-core (0.13.0)
+    ruby-next-core (0.12.0)
     ruby-prof (1.4.3)
     ruby-progressbar (1.11.0)
     ruby_audit (2.0.0)
@@ -346,6 +346,7 @@ DEPENDENCIES
   rspec-rails
   rubocop-rails
   rubocop-rspec
+  ruby-next-core (< 0.13.0)
   ruby-prof (>= 0.16.0)
   ruby_audit
   shallow_attributes

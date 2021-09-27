@@ -24,6 +24,7 @@ gem "puma"
 gem "rack-attack"
 gem "rack-cors"
 gem "redis"
+gem "ruby-next-core", "< 0.13.0"
 gem "shallow_attributes"
 gem "strong_migrations"
 

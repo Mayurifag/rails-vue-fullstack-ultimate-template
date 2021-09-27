@@ -1,4 +1,4 @@
-# Rails/Vue fullstack template to use ideas from
+# Rails/Vue full-stack template to use ideas from
 
 ![Build Status][build-badger]
 [![License: LGPL v3][license-badger]][license-link]
@@ -16,8 +16,8 @@ To start development server you need latest stable versions of `git`, `docker`,
 
 ### How to start
 
-Do not use it. Better regenerate frontend folder via vite or smth and copy
-docker things and linters.
+Do not use it. Better regenerate frontend folder via `Vite` or something and
+copy docker configuration, etc.
 
 ### Entry points
 
