@@ -1,7 +1,4 @@
 ---
-# Database consistency should help you to find the things to check on form objects
-
-# We have form object for user sign up so we dont need the callbacks on user model
 User:
   email:
     NullConstraintChecker:
